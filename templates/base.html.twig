@@ -1,0 +1,102 @@
+<!DOCTYPE html>
+<html>
+    <head>
+            <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+    <meta name="author" content="Nathan KEDINGER">
+    <meta name="generator" content="Jekyll v4.1.1">
+    <meta name="description" content="{% block metaDescription %}{% endblock %}">
+    <title>{% block title %} - Vooov échange vocaux et voix off{% endblock %}</title>
+        {% block stylesheets %}
+            {{ encore_entry_link_tags('app') }}
+                <link href="{{ asset('assets/css/bootstrap.min.css') }}" rel="stylesheet" integrity="sha384-iYQeCzEYFbKjA/T2uDLTpkwGzCiq6soy8tYaI1GyVh/UjpbCx/TYkiZhlZB6+fzT" crossorigin="anonymous">
+                <link href="{{ asset('assets/css/style.css') }}" rel="stylesheet">
+                <link rel="preload" as="font">
+                <link href="https://fonts.googleapis.com/css?family=Roboto:400,700&display=swap" rel="stylesheet">
+        {% endblock %}
+
+        {% block javascripts %}
+            {{ encore_entry_script_tags('app') }}
+                <script src="{{ asset('assets/js/bootstrap.bundle.min.js') }}" defer></script>
+        {% endblock %}
+
+    </head>
+    <body>
+        {% block body %}
+
+                <div class="container-fluid ps-0">
+            
+            <!-- Side Menu --> 
+                <div class="d-flex flex-column flex-shrink-0 p-3 main-background side-menu-width">
+                    <a href="/" class="d-flex align-items-center mb-3 mb-md-0 me-md-auto text-white text-decoration-none">
+                        <svg class="bi pe-none me-2" width="40" height="32"><use xlink:href="#bootstrap"/></svg>
+                        <span class="fs-4"><h1>Vooov</h1></span>
+                    </a>
+                    <hr>
+                    <ul class="nav nav-pills flex-column mb-auto">
+                        <li class="nav-item">
+                            <a href="#" class="nav-link active" aria-current="page">
+                            <svg class="bi pe-none me-2" width="16" height="16"><use xlink:href="#home"/></svg>
+                            Studio
+                            </a>
+                        </li>
+                        <li>
+                            <a href="#" class="nav-link text-white">
+                            <svg class="bi pe-none me-2" width="16" height="16"><use xlink:href="#speedometer2"/></svg>
+                            Accueil
+                            </a>
+                        </li>
+                        <li>
+                            <a href="#" class="nav-link text-white">
+                            <svg class="bi pe-none me-2" width="16" height="16"><use xlink:href="#table"/></svg>
+                            Catégorie
+                            </a>
+                        </li>
+                        <li>
+                            <a href="#" class="nav-link text-white">
+                            <svg class="bi pe-none me-2" width="16" height="16"><use xlink:href="#grid"/></svg>
+                            Porte moon
+                            </a>
+                        </li>
+                        <li>
+                            <a href="#" class="nav-link text-white">
+                            <svg class="bi pe-none me-2" width="16" height="16"><use xlink:href="#people-circle"/></svg>
+                            Communauté
+                            </a>
+                        </li>
+                        <li>
+                            <a href="#" class="nav-link text-white">
+                            <svg class="bi pe-none me-2" width="16" height="16"><use xlink:href="#people-circle"/></svg>
+                            Messages
+                            </a>
+                        </li>
+                        <hr>
+                        <li>
+                            <a href="#" class="nav-link text-white">
+                            <svg class="bi pe-none me-2" width="16" height="16"><use xlink:href="#people-circle"/></svg>
+                            Déconnexion
+                            </a>
+                        </li>
+                    </ul>
+
+                </div>
+            <!-- End Side Menu --> 
+                    <div class="dropdown top-right-small-menu text-bg-dark">
+                        <a href="#" class="d-flex align-items-center text-white text-decoration-none dropdown-toggle" data-bs-toggle="dropdown" aria-expanded="false">
+                            <img src="https://github.com/mdo.png" alt="" width="32" height="32" class="rounded-circle me-2">
+                            <strong>Utilisateur</strong><!--Ajouter le nom de l'utilisateru connecté-->
+                        </a>
+                        <!--Ajouter un if utilisateru connecté-->
+                        <ul class="dropdown-menu dropdown-menu-dark text-small shadow">
+                            <li><a class="dropdown-item" href="#">Mes enregistrements</a></li>
+                            <li><a class="dropdown-item" href="#">Mon compte</a></li>
+                            <li><a class="dropdown-item" href="#">Mentions légales</a></li>
+                            <li><hr class="dropdown-divider"></li>
+                            <li><a class="dropdown-item" href="#">Déconnexion</a></li>
+                        </ul>
+                    </div>
+                </div>    
+                
+        {% endblock %}
+    </body>
+</html>

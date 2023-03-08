@@ -1,0 +1,28 @@
+/* General */
+
+.main-background{
+    background-color: #131C3D;
+}
+
+/* End general */
+
+/* Side menu */
+    .side-menu-width{
+        width: 280px;
+    }
+
+/* Side menu */
+
+/* Top right small menu */
+.top-right-small-menu{
+    position: fixed;
+    color: black;
+    top: 20px;
+    right: 20px;
+    padding: 10px;
+    border-radius: 25px;
+    width: 200px;
+}
+
+
+/* Top right small menu */
