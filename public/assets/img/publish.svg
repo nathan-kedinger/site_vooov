@@ -1,0 +1,27 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!-- Created with Inkscape (http://www.inkscape.org/) -->
+<svg id="SVGRoot" width="48px" height="48px" version="1.1" viewBox="0 0 48 48" xmlns="http://www.w3.org/2000/svg">
+ <defs>
+  <linearGradient id="linearGradient9632" x1="42.199" x2="7.6336" y1="45.832" y2="4.2478" gradientTransform="matrix(1.0258 0 0 1.0258 -1.0267 -.89369)" gradientUnits="userSpaceOnUse">
+   <stop stop-color="#edaa15" offset="0"/>
+   <stop stop-color="#feed8a" offset="1"/>
+  </linearGradient>
+ </defs>
+ <g fill-rule="evenodd">
+  <path d="m10.001 2.4153h28.625c4.499 0 8.1209 3.6219 8.1209 8.1209v28.408c0 4.499-3.6219 8.1209-8.1209 8.1209h-28.625c-4.499 0-8.1209-3.6219-8.1209-8.1209v-28.408c0-4.499 3.6219-8.1209 8.1209-8.1209z" fill="#ddb514" style="paint-order:stroke fill markers"/>
+  <g stroke-linecap="round" stroke-linejoin="round">
+   <path d="m12.177 1.1579c7.7243 0.41381 15.207-0.32904 22.702 0.05956 8.9418 0.46362 11.596 4.9223 11.28 11.092-0.38987 7.6101-0.33458 15.22 0 22.83 0.27137 6.1723-5.0161 11.874-11.152 11.152-7.1308-0.83879-15.22-9.73e-4 -22.83 0-6.1782 7.91e-4 -11.45-4.981-11.152-11.152 0.36873-7.6349 0.69622-15.308 0-22.83-0.56942-6.1519 4.9826-11.483 11.152-11.152z" fill="url(#linearGradient9632)" stroke-width="3.877" style="paint-order:stroke fill markers"/>
+   <path d="m9.3379 42.442v-5.4874h31.635v5.4874z" fill="#dfa50e" stroke-width="1.2578" style="paint-order:stroke fill markers"/>
+   <path d="m11.106 41.081v-5.0185h30.78v5.0185z" fill="#dfa50e" stroke-width="1.1864" style="paint-order:stroke fill markers"/>
+   <path d="m10.121 42.048v-4.7626h29.997v4.7626z" fill="#ffdf0d" stroke-width="1.141" style="paint-order:stroke fill markers"/>
+  </g>
+ </g>
+ <g transform="matrix(.99594 0 0 .99594 2.5492 .76893)" fill="#dfa50e" fill-rule="evenodd" stroke-linecap="round" stroke-linejoin="round">
+  <path d="m13.014 17.778-2.6755-3.201 13.804-10.772 2.6755 3.201z" stroke-width=".81564" style="paint-order:stroke fill markers"/>
+  <path d="m35.439 17.804 2.6755-3.201-13.804-10.772-2.6755 3.201z" stroke-width=".81564" style="paint-order:stroke fill markers"/>
+  <path d="m26.346 33.341h-4.2583v-25.916h4.2583z" stroke-width="1.0028" style="paint-order:stroke fill markers"/>
+ </g>
+ <g transform="translate(0 .55944)" stroke="#dfa50e">
+  <path d="m24.143 3.8047-13.805 10.771 2.6758 3.2012 9.0742-7.082v22.646h4.2578v-22.635l9.0938 7.0977 2.6758-3.2012-13.805-10.771-0.07227 0.085938z" fill="#ffdf0d" fill-rule="evenodd" stroke="#dfa50e" stroke-linecap="round" stroke-linejoin="round" style="paint-order:stroke fill markers"/>
+ </g>
+</svg>

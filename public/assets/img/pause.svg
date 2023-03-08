@@ -1,0 +1,111 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+<!-- Created with Inkscape (http://www.inkscape.org/) -->
+
+<svg
+   width="48.0px"
+   height="48.0px"
+   viewBox="0 0 48.0 48.0"
+   version="1.1"
+   id="SVGRoot"
+   sodipodi:docname="pause.svg"
+   inkscape:version="1.1.2 (b8e25be833, 2022-02-05)"
+   xmlns:inkscape="http://www.inkscape.org/namespaces/inkscape"
+   xmlns:sodipodi="http://sodipodi.sourceforge.net/DTD/sodipodi-0.dtd"
+   xmlns="http://www.w3.org/2000/svg"
+   xmlns:svg="http://www.w3.org/2000/svg">
+  <sodipodi:namedview
+     id="namedview829"
+     pagecolor="#ffffff"
+     bordercolor="#666666"
+     borderopacity="1.0"
+     inkscape:pageshadow="2"
+     inkscape:pageopacity="0.0"
+     inkscape:pagecheckerboard="0"
+     inkscape:document-units="px"
+     showgrid="true"
+     inkscape:zoom="12.22963"
+     inkscape:cx="17.662023"
+     inkscape:cy="49.837977"
+     inkscape:window-width="3200"
+     inkscape:window-height="1771"
+     inkscape:window-x="-3209"
+     inkscape:window-y="-459"
+     inkscape:window-maximized="1"
+     inkscape:current-layer="layer1">
+    <inkscape:grid
+       type="xygrid"
+       id="grid892" />
+  </sodipodi:namedview>
+  <defs
+     id="defs824">
+    <linearGradient
+       id="linearGradient9632"
+       x1="42.199001"
+       x2="7.6336002"
+       y1="45.832001"
+       y2="4.2477999"
+       gradientTransform="matrix(1.0258,0,0,1.0258,-1.0267389,-0.8936949)"
+       gradientUnits="userSpaceOnUse">
+      <stop
+         stop-color="#edaa15"
+         offset="0"
+         id="stop30875" />
+      <stop
+         stop-color="#feed8a"
+         offset="1"
+         id="stop30877" />
+    </linearGradient>
+  </defs>
+  <g
+     inkscape:label="Calque 1"
+     inkscape:groupmode="layer"
+     id="layer1">
+    <path
+       d="m 10.000683,2.4152851 h 28.625003 c 4.499,0 8.1209,3.6219 8.1209,8.1209009 v 28.408 c 0,4.499 -3.6219,8.1209 -8.1209,8.1209 H 10.000683 c -4.4990019,0 -8.1209019,-3.6219 -8.1209019,-8.1209 v -28.408 c 0,-4.4990009 3.6219,-8.1209009 8.1209019,-8.1209009 z"
+       fill="#ddb514"
+       style="fill-rule:evenodd;paint-order:stroke fill markers"
+       id="path30887" />
+    <path
+       d="m 12.176686,1.1578851 c 7.7243,0.41381 15.207,-0.32904 22.702,0.05956 8.9418,0.46362 11.596,4.9223 11.28,11.0920009 -0.38987,7.6101 -0.33458,15.22 0,22.83 0.27137,6.1723 -5.0161,11.874 -11.152,11.152 -7.1308,-0.83879 -15.22,-9.73e-4 -22.83,0 -6.1782049,7.91e-4 -11.4500049,-4.981 -11.1520049,-11.152 0.36873,-7.6349 0.69622,-15.308 0,-22.83 -0.56942,-6.1519009 4.9826,-11.4830009 11.1520049,-11.1520009 z"
+       fill="url(#linearGradient9632)"
+       stroke-width="3.877"
+       style="fill:url(#linearGradient9632);fill-rule:evenodd;stroke-linecap:round;stroke-linejoin:round;paint-order:stroke fill markers"
+       id="path30889" />
+    <path
+       d="M 7.6358521,7.7198851 H 21.421772 V 38.848886 H 7.6358521 Z"
+       fill="#dfa50e"
+       stroke-width="1.97759"
+       style="fill-rule:evenodd;stroke-linecap:round;stroke-linejoin:round;paint-order:stroke fill markers"
+       id="path30891" />
+    <path
+       d="m 10.090721,12.93117 h 12.682744 v 28.639 H 10.090721 Z"
+       fill="#dfa50e"
+       stroke-width="1.81939"
+       style="fill-rule:evenodd;stroke-linecap:round;stroke-linejoin:round;paint-order:stroke fill markers"
+       id="path30893" />
+    <path
+       d="M 8.1999659,9.0140851 H 20.882705 V 37.653086 H 8.1999659 Z"
+       fill="url(#radialGradient2697)"
+       stroke-width="1.81939"
+       style="fill:#ffdf0d;fill-opacity:1;fill-rule:evenodd;stroke-linecap:round;stroke-linejoin:round;paint-order:stroke fill markers"
+       id="path30895" />
+    <path
+       d="M 26.453541,7.7011083 H 40.239467 V 38.830102 H 26.453541 Z"
+       fill="#dfa50e"
+       stroke-width="1.97759"
+       style="fill-rule:evenodd;stroke-linecap:round;stroke-linejoin:round;paint-order:stroke fill markers"
+       id="path30891-2" />
+    <path
+       d="M 28.908416,12.912386 H 41.59116 v 28.639 H 28.908416 Z"
+       fill="#dfa50e"
+       stroke-width="1.81939"
+       style="fill-rule:evenodd;stroke-linecap:round;stroke-linejoin:round;paint-order:stroke fill markers"
+       id="path30893-1" />
+    <path
+       d="M 27.017655,8.9953082 H 39.7004 V 37.634302 H 27.017655 Z"
+       fill="url(#radialGradient2697)"
+       stroke-width="1.81939"
+       style="fill:#ffdf0d;fill-opacity:1;fill-rule:evenodd;stroke-linecap:round;stroke-linejoin:round;paint-order:stroke fill markers"
+       id="path30895-7" />
+  </g>
+</svg>

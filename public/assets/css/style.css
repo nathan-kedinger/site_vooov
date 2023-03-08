@@ -4,13 +4,42 @@
     background-color: #131C3D;
 }
 
-/* End general */
+.image-background{
+    position: fixed;
+    bottom: 0px;
+    left: 0px;
+    right: 0px;
+    top: 0px;
+    width: 100vw;
+    height: 100vh;
+    z-index: -1;
+}
+
+.border-radius-25{
+    border-radius: 25px;
+}
 
 /* Side menu */
-    .side-menu-width{
-        width: 280px;
+
+    .main-logo{
+        width: 60px;
+        height: 60px;
     }
 
+    .links-logos{
+        width: 38px;
+        height: 38px;
+    }
+
+    .side-menu-width{
+        width: 280px;
+        top: 0px;
+        left: 0px;
+        bottom: 0px;
+        position: fixed;
+    }
+
+    
 /* Side menu */
 
 /* Top right small menu */
@@ -20,9 +49,24 @@
     top: 20px;
     right: 20px;
     padding: 10px;
-    border-radius: 25px;
     width: 200px;
 }
-
-
 /* Top right small menu */
+
+/* Bottom navbar*/
+.bottom-navbar{
+    position: fixed;
+    bottom: 0px;
+    left: 0px;
+    right: 0px;
+}
+/* End bottom navbar*/
+
+/* Search bar */
+.search-bar{
+    width: 30vw;
+}
+/* Search bar */
+
+
+/* End general */
