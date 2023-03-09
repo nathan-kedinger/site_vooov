@@ -6,13 +6,13 @@ use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
 use Symfony\Component\HttpFoundation\Response;
 use Symfony\Component\Routing\Annotation\Route;
 
-class CurrentProfileUserController extends AbstractController
+class CommunityController extends AbstractController
 {
-    #[Route('/mon-profil', name: 'app_current_profile_user')]
+    #[Route('/communaute', name: 'app_community')]
     public function index(): Response
     {
-        return $this->render('current_profile_user/index.html.twig', [
-            'controller_name' => 'CurrentProfileUserController',
+        return $this->render('community/index.html.twig', [
+            'controller_name' => 'CommunityController',
         ]);
     }
 }

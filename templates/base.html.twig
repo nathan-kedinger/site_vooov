@@ -9,7 +9,7 @@
     <title>{% block title %} - Vooov échange vocaux et voix off{% endblock %}</title>
         {% block stylesheets %}
             {{ encore_entry_link_tags('app') }}
-                <link href="{{ asset('assets/css/bootstrap.min.css') }}" rel="stylesheet" integrity="sha384-iYQeCzEYFbKjA/T2uDLTpkwGzCiq6soy8tYaI1GyVh/UjpbCx/TYkiZhlZB6+fzT" crossorigin="anonymous">
+                <link href="{{ asset('assets/css/bootstrap.min.css') }}" rel="stylesheet"> 
                 <link href="{{ asset('assets/css/style.css') }}" rel="stylesheet">
                 <link rel="preload" as="font">
                 <link href="https://fonts.googleapis.com/css?family=Roboto:400,700&display=swap" rel="stylesheet">
@@ -24,129 +24,162 @@
     <body>
         {% block body %}
 
-            <div class="container-fluid ps-0">
+        <div class="container-fluid ps-0">
             
             <!-- Background image --> 
-                <img src="{{ asset('assets/img/main-background.png') }}" class="image-background">
+            <img src="{{ asset('assets/img/main-background.png') }}" class="image-background">
             <!-- End background image--> 
 
-            <!-- Side Menu --> 
-                <div class="d-flex flex-column flex-shrink-0 p-3 main-background side-menu-width">
-                    <a href="/" class="d-flex align-items-center mb-3 mb-md-0 me-md-auto text-white text-decoration-none">
-                        <img src="{{ asset('assets/img/logo_vooov.png') }}" class="bi pe-none me-2 main-logo">
-                        <span class="fs-4"><h1>Vooov</h1></span>
-                    </a>
+            <!-- Left Side Menu --> 
+            <div class="d-flex flex-column flex-shrink-0 p-3 main-background side-menu-width">
+                <a href="/" class="d-flex align-items-center mb-3 mb-md-0 me-md-auto text-white text-decoration-none">
+                    <img src="{{ asset('assets/img/logo_vooov.png') }}" class="bi pe-none me-2 main-logo">
+                    <span class="fs-4"><h1>Vooov</h1></span>
+                </a>
+                <hr>
+                <ul class="nav nav-pills flex-column mb-auto">
+                    <li class="nav-item">
+                        <a href="{{ path('app_studio') }}" class="nav-link link-light" aria-current="page">
+                        <img src="{{ asset('assets/img/record.svg') }}" class="bi pe-none me-2 links-logos">
+                        Studio
+                        </a>
+                    </li>
+                    <li>
+                        <a href="/" class="nav-link text-white">
+                        <img src="{{ asset('assets/img/home.png') }}" class="bi pe-none me-2 links-logos">
+                        Accueil
+                        </a>
+                    </li>
+                    <li>
+                        <a href="{{ path('app_offers') }}" class="nav-link text-white">
+                        <img src="{{ asset('assets/img/offers.png') }}" class="bi pe-none me-2 links-logos">
+                        Offres
+                        </a>
+                    </li>
+                    <li>
+                        <a href="{{ path('app_wallet') }}" class="nav-link text-white">
+                        <img src="{{ asset('assets/img/wallet.png') }}" class="bi pe-none me-2 links-logos">
+                        Porte moon
+                        </a>
+                    </li>
+                    <li>
+                        <a href="{{ path('app_community') }}" class="nav-link text-white">
+                        <img src="{{ asset('assets/img/community.png') }}" class="bi pe-none me-2 links-logos">
+                        Communauté
+                        </a>
+                    </li>
+                    <li>
+                        <a href="#" class="nav-link text-white" data-bs-toggle="offcanvas" data-bs-target="#offcanvasScrolling" aria-controls="offcanvasScrolling">
+                        <img src="{{ asset('assets/img/conversations.png') }}" class="bi pe-none me-2 links-logos">
+                        Messages
+                        </a>
+                    </li>
                     <hr>
-                    <ul class="nav nav-pills flex-column mb-auto">
-                        <li class="nav-item">
-                            <a href="#" class="nav-link link-light" aria-current="page">
-                            <img src="{{ asset('assets/img/record.svg') }}" class="bi pe-none me-2 links-logos">
-                            Studio
-                            </a>
-                        </li>
-                        <li>
-                            <a href="#" class="nav-link text-white">
-                            <img src="{{ asset('assets/img/home.png') }}" class="bi pe-none me-2 links-logos">
-                            Accueil
-                            </a>
-                        </li>
-                        <li>
-                            <a href="#" class="nav-link text-white">
-                            <img src="{{ asset('assets/img/offers.png') }}" class="bi pe-none me-2 links-logos">
-                            Offres
-                            </a>
-                        </li>
-                        <li>
-                            <a href="#" class="nav-link text-white">
-                            <img src="{{ asset('assets/img/wallet.png') }}" class="bi pe-none me-2 links-logos">
-                            Porte moon
-                            </a>
-                        </li>
-                        <li>
-                            <a href="#" class="nav-link text-white">
-                            <img src="{{ asset('assets/img/community.png') }}" class="bi pe-none me-2 links-logos">
-                            Communauté
-                            </a>
-                        </li>
-                        <li>
-                            <a href="#" class="nav-link text-white">
-                            <img src="{{ asset('assets/img/conversations.png') }}" class="bi pe-none me-2 links-logos">
-                            Messages
-                            </a>
-                        </li>
-                        <hr>
-                        <li>
-                            <a href="#" class="nav-link text-white">
+                    <li>
+                        {% if app.user %}
+                            <a href="{{ path('app_logout') }}" class="nav-link text-white">
                             <img src="{{ asset('assets/img/logout.png') }}" class="bi pe-none me-2 links-logos">
                             Déconnexion
                             </a>
-                        </li>
-                    </ul>
+                        {% else %}
+                            <a href="{{ path('app_login') }}" class="nav-link text-white">
+                            <img src="{{ asset('assets/img/logout.png') }}" class="bi pe-none me-2 links-logos">
+                            Connexion
+                            </a>
+                        {% endif %}
+                    </li>
+                </ul>
+            </div>
+            <!-- End left Side Menu --> 
+            <!-- Right messages side bar -->
 
+            <div class="offcanvas offcanvas-end" data-bs-scroll="true" data-bs-backdrop="false" tabindex="-1" id="offcanvasScrolling" aria-labelledby="offcanvasScrollingLabel">
+                <div class="offcanvas-header">
+                    <h5 class="offcanvas-title" id="offcanvasScrollingLabel">Offcanvas with body scrolling</h5>
+                    <button type="button" class="btn-close" data-bs-dismiss="offcanvas" aria-label="Close"></button>
                 </div>
-            <!-- End Side Menu --> 
+                <div class="offcanvas-body">
+                    <p>Try scrolling the rest of the page to see this option in action.</p>
+                </div>
+            </div>
+            <!-- End right messages side bar -->
             <!-- Search Item -->
-                <form class="d-flex justify-content-center p-4" role="search">
-                    <input class="form-control me-2 search-bar align-self-center border-radius-25" type="search" placeholder="Rechercher" aria-label="Search">
-                    <button class="btn btn-outline-light border-radius-25" type="submit">Rechercher</button>
-                </form>
+            <form class="d-flex justify-content-center p-4" role="search">
+                <input class="form-control me-2 search-bar align-self-center border-radius-25" type="search" placeholder="Rechercher" aria-label="Search">
+                <button class="btn btn-outline-light border-radius-25" type="submit">Rechercher</button>
+            </form>
             <!-- End Search Item -->
             <!-- Top right small menu -->
-                    <div class="dropdown top-right-small-menu border-radius-25 text-bg-dark">
-                        <a href="#" class="d-flex align-items-center text-white text-decoration-none dropdown-toggle" data-bs-toggle="dropdown" aria-expanded="false">
-                            <img src="https://github.com/mdo.png" alt="" width="32" height="32" class="rounded-circle me-2">
-                            <strong>Utilisateur</strong><!--Ajouter le nom de l'utilisateru connecté-->
-                        </a>
-                        <!--Ajouter un if utilisateru connecté-->
-                        <ul class="dropdown-menu dropdown-menu-dark text-small shadow">
-                            <li><a class="dropdown-item" href="#">Mes enregistrements</a></li>
-                            <li><a class="dropdown-item" href="#">Mon compte</a></li>
-                            <li><a class="dropdown-item" href="#">Mentions légales</a></li>
-                            <li><hr class="dropdown-divider"></li>
-                            <li><a class="dropdown-item" href="#">Déconnexion</a></li>
-                        </ul>
-                    </div>
-            </div>    
+            <div class="dropdown top-right-small-menu border-radius-25 text-bg-dark">
+                <a href="#" class="d-flex align-items-center text-white text-decoration-none dropdown-toggle" data-bs-toggle="dropdown" aria-expanded="false">
+                    <img src="https://github.com/mdo.png" alt="" width="32" height="32" class="rounded-circle me-2">
+                    {% if app.user %}
+                        <strong>{{ app.user.pseudo }}</strong>
+                    {% else %}
+                        <strong>Utilisateur</strong><!--Ajouter le nom de l'utilisateru connecté-->
+                    {% endif %}
+                </a>
+                <!--Ajouter un if utilisateru connecté-->
+                
+                {% if app.user %}
+                    <ul class="dropdown-menu dropdown-menu-dark text-small shadow">
+                        <li><a class="dropdown-item" href="#">Mes enregistrements</a></li>
+                        <li><a class="dropdown-item" href="#">Mon compte</a></li>
+                        <li><a class="dropdown-item" href="#">Mentions légales</a></li>
+                        <li><hr class="dropdown-divider"></li>
+                        <li><a class="dropdown-item" href="#">Déconnexion</a></li>
+                    </ul>
+                {% else %}
+                    <ul class="dropdown-menu dropdown-menu-dark text-small shadow">
+                        <li><a class="dropdown-item" href="#">Mentions légales</a></li>
+                        <li><hr class="dropdown-divider"></li>
+                        <li><a class="dropdown-item" href="#">Connexion</a></li>
+                    </ul>
+                {% endif %}
+
+            </div>
+        </div>    
             <!-- End top right small menu -->
             <!-- Bottom playbar -->
-                <div class="d-flex justify-content-center p-2 bottom-navbar main-background">
-                    <div>
-                        <a href="#">
-                            <img src="{{ asset('assets/img/random-dice.png') }}" class="bi pe-none me-2 links-logos">
-                        </a>
-                    </div>
-                    <div>
-                        <a href="#">
-                            <img src="{{ asset('assets/img/random.png') }}" class="bi pe-none me-2 links-logos">
-                        </a>
-                    </div>                    
-                    <div class="bi pe-none me-2">
-                      <div class="fw-bold text-light">Artiste</div>
-                        <div class="text-light">Music Title</div>
-                    </div>
-                    <div>
-                        <a href="#">
-                            <img src="{{ asset('assets/img/rewind.svg') }}" class="bi pe-none me-2 links-logos">
-                        </a>
-                    </div>                    
-                    <div>
-                        <a href="#">
-                            <img src="{{ asset('assets/img/play.svg') }}" class="bi pe-none me-2 links-logos">
-                        </a>
-                    </div>
-                    <div>
-                        <a href="#">
-                            <img src="{{ asset('assets/img/stop.svg') }}" class="bi pe-none me-2 links-logos">
-                        </a>
-                    </div>                    
-                    <div>
-                        <a href="#">
-                            <img src="{{ asset('assets/img/forward.svg') }}" class="bi pe-none me-2 links-logos">
-                        </a>
-                    </div>
-                            <div class="progress mb-3" role="progressbar" aria-label="Basic example" aria-valuenow="0" aria-valuemin="0" aria-valuemax="100">
-                            <div class="progress-bar w-50" style="width: 5%"></div>
+            <div class="d-flex justify-content-center p-2 bottom-navbar main-background">
+                <div>
+                    <a href="#">
+                        <img src="{{ asset('assets/img/random-dice.png') }}" class="bi pe-none me-2 links-logos">
+                    </a>
                 </div>
+                <div>
+                    <a href="#">
+                        <img src="{{ asset('assets/img/random.png') }}" class="bi pe-none me-2 links-logos">
+                    </a>
+                </div>                    
+                <div class="bi pe-none me-2">
+                  <div class="fw-bold text-light">Artiste</div>
+                    <div class="text-light">Music Title</div>
+                </div>
+                <div>
+                    <a href="#">
+                        <img src="{{ asset('assets/img/rewind.svg') }}" class="bi pe-none me-2 links-logos">
+                    </a>
+                </div>                    
+                <div>
+                    <a href="#">
+                        <img src="{{ asset('assets/img/play.svg') }}" class="bi pe-none me-2 links-logos">
+                    </a>
+                </div>
+                <div>
+                    <a href="#">
+                        <img src="{{ asset('assets/img/stop.svg') }}" class="bi pe-none me-2 links-logos">
+                    </a>
+                </div>                    
+                <div>
+                    <a href="#">
+                        <img src="{{ asset('assets/img/forward.svg') }}" class="bi pe-none me-2 links-logos">
+                    </a>
+                </div>
+                <div class="progress mb-3" role="progressbar" aria-label="Basic example" aria-valuenow="0" aria-valuemin="0" aria-valuemax="100">
+                        <div class="progress-bar w-50" style="width: 5%"></div>
+                </div>
+            </div>
             <!-- End bottom playbar -->
             
         {% endblock %}

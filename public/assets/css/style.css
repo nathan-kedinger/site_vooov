@@ -50,6 +50,7 @@
     right: 20px;
     padding: 10px;
     width: 200px;
+    z-index: 1100;
 }
 /* Top right small menu */
 

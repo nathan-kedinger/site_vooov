@@ -6,13 +6,13 @@ use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
 use Symfony\Component\HttpFoundation\Response;
 use Symfony\Component\Routing\Annotation\Route;
 
-class CurrentProfileUserController extends AbstractController
+class WalletController extends AbstractController
 {
-    #[Route('/mon-profil', name: 'app_current_profile_user')]
+    #[Route('/porte-moon', name: 'app_wallet')]
     public function index(): Response
     {
-        return $this->render('current_profile_user/index.html.twig', [
-            'controller_name' => 'CurrentProfileUserController',
+        return $this->render('wallet/index.html.twig', [
+            'controller_name' => 'WalletController',
         ]);
     }
 }
