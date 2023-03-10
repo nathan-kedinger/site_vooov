@@ -22,14 +22,18 @@
 
     </head>
     <body>
-        {% block body %}
+        {% block content %}{% endblock %}
 
         <div class="container-fluid ps-0">
-            
-            <!-- Background image --> 
-            <img src="{{ asset('assets/img/main-background.png') }}" class="image-background">
-            <!-- End background image--> 
-
+            {% if block ('studioBackground') is defined %}
+                <!-- Background image --> 
+                    <img src="{{ asset('assets/img/studio-background.png') }}" class="image-background">
+                <!-- End background image--> 
+            {% else %}
+                <!-- Background image --> 
+                <img src="{{ asset('assets/img/main-background.png') }}" class="image-background">
+                <!-- End background image--> 
+            {% endif %}
             <!-- Left Side Menu --> 
             <div class="d-flex flex-column flex-shrink-0 p-3 main-background side-menu-width">
                 <a href="/" class="d-flex align-items-center mb-3 mb-md-0 me-md-auto text-white text-decoration-none">
@@ -59,7 +63,7 @@
                     <li>
                         <a href="{{ path('app_wallet') }}" class="nav-link text-white">
                         <img src="{{ asset('assets/img/wallet.png') }}" class="bi pe-none me-2 links-logos">
-                        Porte moon
+                        Porte moon - {% if app.user %}{{ app.user.numberOfMoons }}{% endif %}
                         </a>
                     </li>
                     <li>
@@ -92,8 +96,7 @@
             </div>
             <!-- End left Side Menu --> 
             <!-- Right messages side bar -->
-
-            <div class="offcanvas offcanvas-end" data-bs-scroll="true" data-bs-backdrop="false" tabindex="-1" id="offcanvasScrolling" aria-labelledby="offcanvasScrollingLabel">
+            <div class="offcanvas-md offcanvas-end w-25" data-bs-scroll="true" data-bs-backdrop="false" tabindex="-1" id="offcanvasScrolling" aria-labelledby="offcanvasScrollingLabel">
                 <div class="offcanvas-header">
                     <h5 class="offcanvas-title" id="offcanvasScrollingLabel">Offcanvas with body scrolling</h5>
                     <button type="button" class="btn-close" data-bs-dismiss="offcanvas" aria-label="Close"></button>
@@ -103,12 +106,6 @@
                 </div>
             </div>
             <!-- End right messages side bar -->
-            <!-- Search Item -->
-            <form class="d-flex justify-content-center p-4" role="search">
-                <input class="form-control me-2 search-bar align-self-center border-radius-25" type="search" placeholder="Rechercher" aria-label="Search">
-                <button class="btn btn-outline-light border-radius-25" type="submit">Rechercher</button>
-            </form>
-            <!-- End Search Item -->
             <!-- Top right small menu -->
             <div class="dropdown top-right-small-menu border-radius-25 text-bg-dark">
                 <a href="#" class="d-flex align-items-center text-white text-decoration-none dropdown-toggle" data-bs-toggle="dropdown" aria-expanded="false">
@@ -116,11 +113,9 @@
                     {% if app.user %}
                         <strong>{{ app.user.pseudo }}</strong>
                     {% else %}
-                        <strong>Utilisateur</strong><!--Ajouter le nom de l'utilisateru connecté-->
+                        <strong>Utilisateur</strong>
                     {% endif %}
                 </a>
-                <!--Ajouter un if utilisateru connecté-->
-                
                 {% if app.user %}
                     <ul class="dropdown-menu dropdown-menu-dark text-small shadow">
                         <li><a class="dropdown-item" href="#">Mes enregistrements</a></li>
@@ -141,6 +136,8 @@
         </div>    
             <!-- End top right small menu -->
             <!-- Bottom playbar -->
+            {% if block ('studioBackground') is defined %}
+            {% else %}
             <div class="d-flex justify-content-center p-2 bottom-navbar main-background">
                 <div>
                     <a href="#">
@@ -180,8 +177,9 @@
                         <div class="progress-bar w-50" style="width: 5%"></div>
                 </div>
             </div>
+            {% endif %}
+
             <!-- End bottom playbar -->
             
-        {% endblock %}
     </body>
 </html>

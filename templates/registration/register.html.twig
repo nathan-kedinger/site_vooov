@@ -2,12 +2,24 @@
 
 {% block title %}Register{% endblock %}
 
-{% block body %}
+{% block content %}
     {% for flash_error in app.flashes('verify_email_error') %}
         <div class="alert alert-danger" role="alert">{{ flash_error }}</div>
     {% endfor %}
 
     <h1>Register</h1>
-
-    {{ form(registrationForm) }}
+    <div class="container">
+        <div class="row justify-content-center">
+            <div class="mb-5 p-3 card col-md-5 main-background ">
+                <div class="card-body  text-light ">
+                    <h1 class="h3 mb-3 font-weight-normal text-center mb-5 mt-5">Inscrivez-vous</h1>
+                    <div class="row justify-content-center">
+                        <div class="col-md-7">
+                            {{ form(registrationForm) }}
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
 {% endblock %}

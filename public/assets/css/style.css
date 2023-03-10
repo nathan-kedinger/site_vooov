@@ -4,10 +4,14 @@
     background-color: #131C3D;
 }
 
+.buttons{
+    background: #102B8A ;
+}
+
 .image-background{
     position: fixed;
     bottom: 0px;
-    left: 0px;
+    left: 200px;
     right: 0px;
     top: 0px;
     width: 100vw;

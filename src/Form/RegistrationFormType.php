@@ -24,14 +24,7 @@ class RegistrationFormType extends AbstractType
     public function buildForm(FormBuilderInterface $builder, array $options): void
     {
         $builder
-            ->add('agreeTerms', CheckboxType::class, [
-                'mapped' => false,
-                'constraints' => [
-                    new IsTrue([
-                        'message' => 'You should agree to our terms.',
-                    ]),
-                ],
-            ])
+
             ->add('firstname', TextType::class, [
                 'label' => 'Votre prénom',
                 'constraints' => new Length([
@@ -39,7 +32,9 @@ class RegistrationFormType extends AbstractType
                     'max' => 30,
                 ]),
                 'attr' => [
-                    'placeholder' => 'Saisissez votre prénom'
+                    'placeholder' => 'Saisissez votre prénom',
+                    'class' => 'w-100'
+
                 ]
             ])
             ->add('name', TextType::class, [
@@ -49,7 +44,9 @@ class RegistrationFormType extends AbstractType
                     'max' => 30,
                 ]),
                 'attr' => [
-                    'placeholder' => 'Saisissez votre nom'
+                    'placeholder' => 'Saisissez votre nom',
+                    'class' => 'w-100'
+
                 ]
             ])
             ->add('pseudo', TextType::class, [
@@ -59,7 +56,9 @@ class RegistrationFormType extends AbstractType
                     'max' => 22,
                 ]),
                 'attr' => [
-                    'placeholder' => 'Saisissez votre pseudo'
+                    'placeholder' => 'Saisissez votre pseudo',
+                    'class' => 'w-100'
+
                 ]
             ])
             ->add('password', RepeatedType::class, [
@@ -67,13 +66,17 @@ class RegistrationFormType extends AbstractType
                 'first_options' => [
                     'label' => 'Mot de passe',
                     'attr' => [
-                        'placeholder' =>'Saisissez votre mot de passe'
+                        'placeholder' =>'Saisissez votre mot de passe',
+                        'class' => 'w-100'
+
                         ]
                 ],
                 'second_options' => [
                     'label' => 'Confirmation de mot de passe',
                     'attr' => [
-                        'placeholder' =>'Confirmez votre mot de passe'
+                        'placeholder' =>'Confirmez votre mot de passe',
+                        'class' => 'w-100'
+
                         ]
                 ],
                     'constraints' => new Length([
@@ -84,7 +87,9 @@ class RegistrationFormType extends AbstractType
             ->add('phone', TelType::class, [
                 'label' => 'Un numéro de téléphone',
                 'attr' => [
-                    'placeholder' => 'Saisissez votre numéro de téléphone'
+                    'placeholder' => 'Saisissez votre numéro de téléphone',
+                    'class' => 'w-100'
+
                 ]
             ])
             ->add('email', EmailType::class, [
@@ -94,14 +99,24 @@ class RegistrationFormType extends AbstractType
                     'max' => 60,
                 ]),
                 'attr' => [
-                    'placeholder' => 'Saisissez votre email'
+                    'placeholder' => 'Saisissez votre email',
+                    'class' => 'w-100'
                 ]
             ])
             ->add('submit', SubmitType::class, [
                 'label' => 'Inscription',
                 'attr' => [
-                    'class' => 'btn btn-success w-100 mt-2'
+                    'class' => 'btn buttons btn-primary w-100 mt-4'
                 ]
+            ])
+            ->add('agreeTerms', CheckboxType::class, [
+                'mapped' => false,
+                'label' => 'Accepter les conditions',
+                'constraints' => [
+                    new IsTrue([
+                        'message' => 'Vous devez accépter les conditions pour vous inscrire.',
+                    ]),
+                ],
             ])
             ;
     }

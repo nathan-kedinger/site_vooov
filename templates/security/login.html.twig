@@ -2,7 +2,7 @@
 
 {% block title %}Log in!{% endblock %}
 
-{% block body %}
+{% block content %}
 <form method="post">
     {% if error %}
         <div class="alert alert-danger">{{ error.messageKey|trans(error.messageData, 'security') }}</div>
@@ -13,16 +13,33 @@
             Vous êtes connectés {{ app.user.userIdentifier }}, <a href="{{ path('app_logout') }}">Se déconnecter</a>
         </div>
     {% endif %}
-
-    <h1 class="h3 mb-3 font-weight-normal">Please sign in</h1>
-    <label for="inputEmail">Email</label>
-    <input type="email" value="{{ last_username }}" name="email" id="inputEmail" class="form-control" autocomplete="email" required autofocus>
-    <label for="inputPassword">Mot de passe</label>
-    <input type="password" name="password" id="inputPassword" class="form-control" autocomplete="current-password" required>
-
-    <input type="hidden" name="_csrf_token"
-           value="{{ csrf_token('authenticate') }}"
-    >
+    <div class="container">
+        <div class="row justify-content-center">
+            <div class="mt-5 card col-md-5 main-background ">
+                <div class="card-body  text-light ">
+                    <h1 class="h3 mb-3 font-weight-normal text-center mb-5 mt-5">Connectez-vous</h1>
+                    <div class="row justify-content-center">
+                        <div class="col-md-7">
+                            <label class="mt-2 mb-1" for="inputEmail">Email</label>
+                                <input type="email" placeholder="Entrez votre adresse email" value="{{ last_username }}" name="email" id="inputEmail" class="form-control" autocomplete="email" required autofocus>
+                            <label class="mt-2 mb-1" for="inputPassword">Mot de passe</label>
+                                <input type="password" placeholder="Entrez votre mot de passe" name="password" id="inputPassword" class="form-control" autocomplete="current-password" required>
+                                <input  type="hidden" name="_csrf_token"
+                                   value="{{ csrf_token('authenticate') }}">
+                            <button class="btn w-100 btn-primary buttons mt-3 " type="submit">
+                                Connexion
+                            </button>
+                        </div>
+                    </div>
+                        <div class="mt-5 pb-5">
+                            <p class="text-center"><a href="{{ path('app_register') }}">Mot de passe oublié</a></p> 
+                            <p class="text-center">Vous n'avez pas encore de compte ? <a href="{{ path('app_register') }}">Inscrivez vous</a></p> 
+                        </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</form>
 
     {#
         Uncomment this section and add a remember_me option below your firewall to activate remember me functionality.
@@ -35,10 +52,7 @@
         </div>
     #}
 
-    <button class="btn btn-lg btn-primary" type="submit">
-        Connexion
-    </button>
 
-</form>
-    <a href="{{ path('app_register') }}">Vous n'avez pas encore de compte, inscrivez vous</a>
+
+
 {% endblock %}
