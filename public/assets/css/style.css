@@ -23,6 +23,11 @@
     border-radius: 25px;
 }
 
+.small-size-logo{
+    width: 25px;
+    height: 25px;
+}
+
 /* Side menu */
 
     .main-logo{
