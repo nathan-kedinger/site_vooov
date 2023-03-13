@@ -3,6 +3,9 @@
 namespace App\Controller;
 
 use App\Classes\AudioRecordsClass;
+use App\Entity\Users;
+use App\Repository\UsersRepository;
+use Doctrine\Persistence\ManagerRegistry;
 use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
 use Symfony\Component\HttpFoundation\JsonResponse;
 use Symfony\Component\HttpFoundation\Response;
@@ -14,7 +17,7 @@ class HomePageController extends AbstractController
     public function index(AudioRecordsClass $records): Response 
     {
         return $this->render('home_page/home_page.html.twig',[
-            'records' => $records->audioRecordsList()
+            'records' => $records->audioRecordsList(),
         ]);
     }
 }

@@ -3,6 +3,8 @@
 namespace App\Entity;
 
 use App\Repository\UsersRepository;
+use Doctrine\Common\Collections\ArrayCollection;
+use Doctrine\Common\Collections\Collection;
 use Doctrine\DBAL\Types\Types;
 use Doctrine\ORM\Mapping as ORM;
 use Symfony\Bridge\Doctrine\Validator\Constraints\UniqueEntity;
@@ -71,6 +73,14 @@ class Users implements UserInterface, PasswordAuthenticatedUserInterface
 
     #[ORM\Column(length: 255)]
     private ?string $last_connection = null;
+
+    #[ORM\OneToMany(mappedBy: 'artist_uuid', targetEntity: AudioRecords::class)]
+    private Collection $audioRecords;
+
+    public function __construct()
+    {
+        $this->audioRecords = new ArrayCollection();
+    }
 
     public function getId(): ?int
     {
@@ -306,6 +316,36 @@ class Users implements UserInterface, PasswordAuthenticatedUserInterface
     public function setLastConnection(string $last_connection): self
     {
         $this->last_connection = $last_connection;
+
+        return $this;
+    }
+
+    /**
+     * @return Collection<int, AudioRecords>
+     */
+    public function getAudioRecords(): Collection
+    {
+        return $this->audioRecords;
+    }
+
+    public function addAudioRecord(AudioRecords $audioRecord): self
+    {
+        if (!$this->audioRecords->contains($audioRecord)) {
+            $this->audioRecords->add($audioRecord);
+            $audioRecord->setArtistId($this);
+        }
+
+        return $this;
+    }
+
+    public function removeAudioRecord(AudioRecords $audioRecord): self
+    {
+        if ($this->audioRecords->removeElement($audioRecord)) {
+            // set the owning side to null (unless already changed)
+            if ($audioRecord->getArtistId() === $this) {
+                $audioRecord->setArtistId(null);
+            }
+        }
 
         return $this;
     }

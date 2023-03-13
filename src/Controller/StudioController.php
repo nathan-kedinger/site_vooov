@@ -20,11 +20,10 @@ class StudioController extends AbstractController
     #[Route('studio', name: 'app_studio')]
     public function index(Request $request, EntityManagerInterface $entityManager, Security $security): Response
     {   
-        $user = $security->getUser();
         if ($security->isGranted('IS_AUTHENTICATED_FULLY')) {
-            $user_uuid = $user->getUuid();
+            $user = $security->getUser();
         } else {
-            $user_uuid = null;
+            $user = null;
         }
         $record = new AudioRecords();
         $form = $this->createForm(AudioRecordType::class, $record);
@@ -37,7 +36,7 @@ class StudioController extends AbstractController
         if ($form->isSubmitted() && $form->isValid()) {
 
             $record->setUuid($uuid_string);
-            $record->setArtistUuid($user_uuid);
+            $record->setArtistId($user);
             $record->setLength(0);
             $record->setNumberOfPlays(0);
             $record->setNumberOfMoons(0);

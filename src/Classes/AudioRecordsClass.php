@@ -2,6 +2,7 @@
 namespace App\Classes;
 
 use App\Entity\AudioRecords;
+use App\Entity\Users;
 use Doctrine\ORM\EntityManagerInterface;
 use Doctrine\ORM\Mapping\Entity;
 
@@ -15,4 +16,5 @@ class AudioRecordsClass{
 
         return $records;
     }
+
 }

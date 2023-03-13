@@ -17,9 +17,6 @@ class AudioRecords
     #[ORM\Column(type: Types::GUID)]
     private ?string $uuid = null;
 
-    #[ORM\Column(length: 36)]
-    private ?string $artist_uuid = null;
-
     #[ORM\Column(length: 255)]
     private ?string $title = null;
 
@@ -47,6 +44,10 @@ class AudioRecords
     #[ORM\Column(length: 255)]
     private ?string $updated_at = null;
 
+    #[ORM\ManyToOne(inversedBy: 'audioRecords')]
+    #[ORM\JoinColumn(nullable: false)]
+    private ?Users $artist_id = null;
+
     public function getId(): ?int
     {
         return $this->id;
@@ -60,18 +61,6 @@ class AudioRecords
     public function setUuid(string $uuid): self
     {
         $this->uuid = $uuid;
-
-        return $this;
-    }
-
-    public function getArtistUuid(): ?string
-    {
-        return $this->artist_uuid;
-    }
-
-    public function setArtistUuid(string $artist_uuid): self
-    {
-        $this->artist_uuid = $artist_uuid;
 
         return $this;
     }
@@ -180,6 +169,18 @@ class AudioRecords
     public function setUpdatedAt(string $updated_at): self
     {
         $this->updated_at = $updated_at;
+
+        return $this;
+    }
+
+    public function getArtistId(): ?Users
+    {
+        return $this->artist_id;
+    }
+
+    public function setArtistId(?Users $artist_id): self
+    {
+        $this->artist_id = $artist_id;
 
         return $this;
     }
