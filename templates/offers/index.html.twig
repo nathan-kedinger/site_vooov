@@ -3,33 +3,41 @@
 {% block title %}Petites annonces de Voix-Off{% endblock %}
 
 {% block content %}
-
-    <h1>Recherche de voix-Off</h1>
-
-    {% for offer in offers %}
-        <div class="row featurette mt-3 gx-5 text-center align-items-center justify-content-around">
-            <div class="col-md-6">
-                <div class="card main-background">
-                    <div class="card-body text-light">
-                        <div class="row">
-                            <div class="col-md-2">
-                                <img class="rounded-circle main-logo" src="{{ asset('assets/img/logo_vooov.png') }}"><br><br>
-                                <div><p>Budget : </p>
-                                {{ offer.budget }}<br><br>
+    <div class="container">
+        <div class="d-flex justify-content-center text-light p-4">
+            <h1>Recherche de voix-Off</h1>
+        </div>
+            <a class="btn btn-primary bottom-right" href="{{ path('app_new_offer') }}">Poster une annonce</a>
+        {% for offer in offers %}
+            <div class="row featurette mt-3 gx-5 text-center align-items-center justify-content-around">
+                <div class="col-md-6">
+                    <div class="card main-background">
+                        <div class="card-body text-light">
+                            <div class="row">
+                                <div class="col-md-2">
+                                    <img class="rounded-circle main-logo" src="{{ asset('assets/img/logo_vooov.png') }}"><br><br>
+                                    <div><p>Budget : </p>
+                                    <div><img src="{{ asset('assets/img/moon.svg') }}" class="bi pe-none me-2 small-size-logo " >
+                                    {{ offer.budget }}<br><br>
+                                    </div>
+                                    </div>
                                 </div>
-                            </div>
-                            <div class="col-md-3 text-start">
-                                <h4 class="card-title mb-3">{{ offer.title }}</h4>
-                                <h6 class="card-subtitle mb-4 ">{{ offer.voiceType }} - {{ offer.voiceStyle }} - {{ offer.createdAt|date('d-m-Y') }}</h6>
-                                <button class="btn btn-primary">Répondre</button>
-                            </div>
-                            <div class="col-md-6">
-                                <p class="card-text">{{ offer.body }}</p>
+                                <div class="col-md-3 text-start">
+                                    <h4 class="card-title mb-3">{{ offer.userId.pseudo }}</h4>
+                                    <p class="card-subtitle">Type de voix : {{ offer.voiceType }}</p>
+                                    <p class="card-subtitle mb-4">{{ offer.endAt|date('d/m/Y') }}</p>
+                                    <button class="btn btn-primary">Répondre</button>
+                                </div>
+                                <div class="col-md-6">
+                                    <h4 class="card-title mb-3">{{ offer.title }}</h4>
+
+                                    <p class="card-text">{{ offer.body }}</p>
+                                </div>
                             </div>
                         </div>
                     </div>
-                </div>
-            </div>        
-        </div>    
-    {% endfor %}
+                </div>        
+            </div>    
+        {% endfor %}
+    </div>
 {% endblock %}

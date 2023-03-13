@@ -12,7 +12,6 @@ class CommunityController extends AbstractController
     public function index(): Response
     {
         return $this->render('community/index.html.twig', [
-            'controller_name' => 'CommunityController',
         ]);
     }
 }

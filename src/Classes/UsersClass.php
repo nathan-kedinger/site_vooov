@@ -1,0 +1,20 @@
+<?php
+namespace App\Classes;
+
+use App\Entity\AudioRecords;
+use App\Entity\Users;
+use Doctrine\ORM\EntityManagerInterface;
+use Doctrine\ORM\Mapping\Entity;
+
+class UsersClass{
+    public function __construct(EntityManagerInterface $em){
+        $this->em = $em;
+    }
+
+    public function UsersList(){
+        $records = $this->em->getRepository(AudioRecords::class)->findAll();
+
+        return $records;
+    }
+
+}

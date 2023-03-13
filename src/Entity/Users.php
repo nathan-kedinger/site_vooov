@@ -77,9 +77,13 @@ class Users implements UserInterface, PasswordAuthenticatedUserInterface
     #[ORM\OneToMany(mappedBy: 'artist_uuid', targetEntity: AudioRecords::class)]
     private Collection $audioRecords;
 
+    #[ORM\OneToMany(mappedBy: 'user_id', targetEntity: Offers::class)]
+    private Collection $offers;
+
     public function __construct()
     {
         $this->audioRecords = new ArrayCollection();
+        $this->offers = new ArrayCollection();
     }
 
     public function getId(): ?int
@@ -344,6 +348,36 @@ class Users implements UserInterface, PasswordAuthenticatedUserInterface
             // set the owning side to null (unless already changed)
             if ($audioRecord->getArtistId() === $this) {
                 $audioRecord->setArtistId(null);
+            }
+        }
+
+        return $this;
+    }
+
+    /**
+     * @return Collection<int, Offers>
+     */
+    public function getOffers(): Collection
+    {
+        return $this->offers;
+    }
+
+    public function addOffer(Offers $offer): self
+    {
+        if (!$this->offers->contains($offer)) {
+            $this->offers->add($offer);
+            $offer->setUserId($this);
+        }
+
+        return $this;
+    }
+
+    public function removeOffer(Offers $offer): self
+    {
+        if ($this->offers->removeElement($offer)) {
+            // set the owning side to null (unless already changed)
+            if ($offer->getUserId() === $this) {
+                $offer->setUserId(null);
             }
         }
 

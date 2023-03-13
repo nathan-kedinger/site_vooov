@@ -33,6 +33,14 @@
     height: 15px;
 }
 
+.bottom-right{
+    position: fixed;
+    bottom: 80px;
+    right: 20px;
+    padding: 10px;
+    z-index: 1100;
+}
+
 /* Side menu */
 
     .main-logo{

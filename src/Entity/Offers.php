@@ -17,9 +17,6 @@ class Offers
     #[ORM\Column(type: Types::GUID)]
     private ?string $uuid = null;
 
-    #[ORM\Column(length: 36)]
-    private ?string $user_uuid = null;
-
     #[ORM\Column(length: 255)]
     private ?string $title = null;
 
@@ -38,8 +35,14 @@ class Offers
     #[ORM\Column(length: 255)]
     private ?string $created_at = null;
 
-    #[ORM\Column(length: 255)]
-    private ?string $end_at = null;
+    #[ORM\Column(type: Types::DATETIME_MUTABLE)]
+    private ?\DateTimeInterface $end_at = null;
+
+    #[ORM\ManyToOne(inversedBy: 'offers')]
+    #[ORM\JoinColumn(nullable: false)]
+    private ?Users $user_id = null;
+
+
 
     public function getId(): ?int
     {
@@ -54,18 +57,6 @@ class Offers
     public function setUuid(string $uuid): self
     {
         $this->uuid = $uuid;
-
-        return $this;
-    }
-
-    public function getUserUuid(): ?string
-    {
-        return $this->user_uuid;
-    }
-
-    public function setUserUuid(string $userUuid): self
-    {
-        $this->user_uuid = $userUuid;
 
         return $this;
     }
@@ -106,14 +97,14 @@ class Offers
         return $this;
     }
 
-    public function getVoiceTypes(): ?string
+    public function getVoiceType(): ?string
     {
         return $this->voice_type;
     }
 
-    public function setVoiceTypes(string $voiceTypes): self
+    public function setVoiceType(string $voiceType): self
     {
-        $this->voice_type = $voiceTypes;
+        $this->voice_type = $voiceType;
 
         return $this;
     }
@@ -142,15 +133,31 @@ class Offers
         return $this;
     }
 
-    public function getEndAt(): ?string
+    public function getEndAt(): ?\DateTimeInterface
     {
         return $this->end_at;
     }
 
-    public function setEndAt(string $end_at): self
+
+    public function setEndAt(\DateTimeInterface $end_at): self
     {
         $this->end_at = $end_at;
 
         return $this;
     }
+
+    public function getUserId(): ?Users
+    {
+        return $this->user_id;
+    }
+
+    public function setUserId(?Users $user_id): self
+    {
+        $this->user_id = $user_id;
+
+        return $this;
+    }
+
+
+
 }
