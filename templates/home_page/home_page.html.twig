@@ -25,7 +25,7 @@
                             </div>
                             <div class="col-md-3 text-start">
                                 <h3>{{ record.artistId.pseudo }}</h3>
-                                <h6 class="card-subtitle mb-4 ">{{ record.kind }} - {{ record.voiceStyle }} - {{ record.createdAt }}</h6>
+                                <h6 class="card-subtitle mb-4 ">{{ record.kind.name }} - {{ record.voiceStyle }} - {{ record.createdAt }}</h6>
                                 <a href="#" class="card-link"><img src="{{ asset('assets/img/play.svg') }}"></a>
                             </div>
                             <div class="col-md-6">
@@ -59,4 +59,13 @@
             </div>        
         </div>    
     {% endfor %}
+    <div class="bottom-right">
+        <div class="card main-background">
+            <div class="card-body text-light">
+                {{ form(form) }}
+            </div>
+        </div>
+    </div>
+
+
 {% endblock %}

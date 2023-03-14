@@ -1,13 +1,35 @@
 {% extends 'base.html.twig' %}
 
-{% block title %}Hello CommunityController!{% endblock %}
+{% block title %}Communauté{% endblock %}
 
 {% block content %}
     <div class="container">
-        <form class="d-flex justify-content-center p-4" role="search">
-            <input class="form-control me-2 search-bar align-self-center border-radius-25" type="search" placeholder="Rechercher une personne" aria-label="Search">
-            <button class="btn btn-outline-light border-radius-25" type="submit">Rechercher</button>
-        </form>
-    </div>
+        <div class="d-flex justify-content-center p-4" role="search">
+            {{ form(form) }}
+        </div>
 
+        {% for user in users %}
+            <div class="row featurette mt-3 gx-5 text-center align-items-center justify-content-around">
+                <div class="col-md-6">
+                    <div class="card main-background">
+                        <div class="card-body text-light">
+                            <div class="row">
+                                <div class="col-md-2">
+                                    <img class="rounded-circle main-logo" src="{{ asset('assets/img/logo_vooov.png') }}"><br><br>
+                                </div>
+                                <div class="col-md-3 text-start">
+                                    <h4 class="card-title mb-3">{{ user.pseudo }}</h4>
+                                    <button class="btn btn-primary">Voir le profil</button>
+                                </div>
+                                <div class="col-md-6">
+
+                                    <p class="card-text">{{ user.description }}</p>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>        
+            </div>    
+        {% endfor %}
+    </div>
 {% endblock %}

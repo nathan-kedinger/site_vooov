@@ -32,9 +32,6 @@ class AudioRecords
     #[ORM\Column(length: 255)]
     private ?string $voice_style = null;
 
-    #[ORM\Column(length: 255)]
-    private ?string $kind = null;
-
     #[ORM\Column(type: Types::TEXT)]
     private ?string $description = null;
 
@@ -47,6 +44,9 @@ class AudioRecords
     #[ORM\ManyToOne(inversedBy: 'audioRecords')]
     #[ORM\JoinColumn(nullable: false)]
     private ?Users $artist_id = null;
+
+    #[ORM\ManyToOne(inversedBy: 'audioRecords')]
+    private ?Categories $kind = null;
 
     public function getId(): ?int
     {
@@ -125,18 +125,6 @@ class AudioRecords
         return $this;
     }
 
-    public function getKind(): ?string
-    {
-        return $this->kind;
-    }
-
-    public function setKind(string $kind): self
-    {
-        $this->kind = $kind;
-
-        return $this;
-    }
-
     public function getDescription(): ?string
     {
         return $this->description;
@@ -181,6 +169,18 @@ class AudioRecords
     public function setArtistId(?Users $artist_id): self
     {
         $this->artist_id = $artist_id;
+
+        return $this;
+    }
+
+    public function getKind(): ?Categories
+    {
+        return $this->kind;
+    }
+
+    public function setKind(?Categories $kind): self
+    {
+        $this->kind = $kind;
 
         return $this;
     }

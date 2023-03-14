@@ -5,6 +5,7 @@ use App\Entity\AudioRecords;
 use App\Entity\Users;
 use Doctrine\ORM\EntityManagerInterface;
 use Doctrine\ORM\Mapping\Entity;
+use Symfony\Component\HttpFoundation\Request;
 
 class UsersClass{
     public function __construct(EntityManagerInterface $em){
@@ -12,9 +13,9 @@ class UsersClass{
     }
 
     public function UsersList(){
-        $records = $this->em->getRepository(AudioRecords::class)->findAll();
+        $users = $this->em->getRepository(Users::class)->findAll();
 
-        return $records;
+        return $users;
     }
 
 }

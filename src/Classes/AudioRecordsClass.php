@@ -7,6 +7,8 @@ use Doctrine\ORM\EntityManagerInterface;
 use Doctrine\ORM\Mapping\Entity;
 
 class AudioRecordsClass{
+
+
     public function __construct(EntityManagerInterface $em){
         $this->em = $em;
     }
@@ -16,5 +18,12 @@ class AudioRecordsClass{
 
         return $records;
     }
+
+    public function selectedAudioRecordsList($title){
+        $records = $this->em->getRepository(AudioRecords::class)->findBytitle($title);
+        
+        return $records;
+    }
+    
 
 }

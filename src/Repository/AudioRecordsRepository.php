@@ -39,20 +39,21 @@ class AudioRecordsRepository extends ServiceEntityRepository
         }
     }
 
-//    /**
-//     * @return AudioRecords[] Returns an array of AudioRecords objects
-//     */
-//    public function findByExampleField($value): array
-//    {
-//        return $this->createQueryBuilder('a')
-//            ->andWhere('a.exampleField = :val')
-//            ->setParameter('val', $value)
-//            ->orderBy('a.id', 'ASC')
-//            ->setMaxResults(10)
-//            ->getQuery()
-//            ->getResult()
-//        ;
-//    }
+    /**
+     * @return AudioRecords[] Returns an array of AudioRecords objects
+     */
+    public function selectedAudioRecordsList($title): array
+    {
+        $query = $this->createQueryBuilder('a')
+            ->where('a.title LIKE :val')
+            ->orWhere('a.kind LIKE :val')
+            ->setParameter('val', '%'.$title.'%')
+            ->orderBy('a.id', 'ASC')
+           // ->setMaxResults(10)
+            ->getQuery()
+        ;
+            return $query->getResult();
+    }
 
 //    public function findOneBySomeField($value): ?AudioRecords
 //    {
