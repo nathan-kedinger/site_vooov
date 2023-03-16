@@ -5,14 +5,16 @@
 {% block content %}
     <!-- Search Item -->
     <form class="d-flex justify-content-center p-4" role="search">
-        <input class="form-control me-2 search-bar align-self-center border-radius-25" type="search" placeholder="Rechercher" aria-label="Search">
-        <button class="btn btn-outline-light border-radius-25" type="submit">Rechercher</button>
+    <div class="form-control me-2 search-bar align-self-center border-radius-25">
+                {{ form(form) }}
+    </div>
+
     </form>
     <!-- End Search Item -->
     {% for record in records %}
         <div class="row featurette mt-3 gx-5 text-center align-items-center justify-content-around">
             <div class="col-md-6">
-                <div class="card main-background">
+                <div class="card main-background"> 
                     <div class="card-body text-light">
                         <div class="row">
                             <div class="col-md-2">
@@ -62,7 +64,6 @@
     <div class="bottom-right">
         <div class="card main-background">
             <div class="card-body text-light">
-                {{ form(form) }}
             </div>
         </div>
     </div>
