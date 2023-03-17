@@ -19,15 +19,17 @@ class HomePageController extends AbstractController
         $form = $this->createForm(ResearchRecordType::class, $recordForm);
         $form->handleRequest($request);
     
+        $filteredRecords = [];
+    
         if($form->isSubmitted() && $form->isValid()){
             $query = $form->get('title')->getData();
-            $records = $records->selectedAudioRecordsList($query);
+            $filteredRecords = $records->selectedAudioRecordsList($query);
         } else {
-            $records = $records->audioRecordsList();
+            $filteredRecords = $records->audioRecordsList();
         }
     
         return $this->render('home_page/home_page.html.twig',[
-            'records' => $records,
+            'records' => $filteredRecords,
             'form' =>$form->createView()
         ]);
     }

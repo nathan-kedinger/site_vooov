@@ -45,13 +45,12 @@ class AudioRecordsRepository extends ServiceEntityRepository
     public function selectedAudioRecordsList($title): array
     {
         $query = $this->createQueryBuilder('a')
-            ->andWhere('a.title = :val')
-            ->setParameter('val', '%'.$title.'%')
-            ->orderBy('a.id', 'ASC')
-            ->setMaxResults(10)
-            ->getQuery()
-        ;
-            return $query->getResult();
+            ->where('a.title LIKE :val')
+            ->setParameter('val', "%{$title}%")
+            ->orderBy('a.id', 'DESC')
+            ->getQuery();
+    
+        return $query->getResult();
     }
 
 //    public function findOneBySomeField($value): ?AudioRecords
