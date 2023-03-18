@@ -36,7 +36,7 @@ class AudioRecordType extends AbstractType
             ->add('kind',ChoiceType::class, [
                 'label' => 'Le style de voix',
                 'choices' => [
-                    'Soprano' => 'Soprano',
+                    'Soprano' => '1',
                     'Mezzo-Soprano' => 'Mezzo-Soprano',
                     'Contralto' => 'Contralto',
                     'Contre-Ténor' => 'Contre-Ténor',

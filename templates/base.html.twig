@@ -63,7 +63,7 @@
                     <li>
                         <a href="{{ path('app_wallet') }}" class="nav-link text-white">
                         <img src="{{ asset('assets/img/wallet.png') }}" class="bi pe-none me-2 links-logos">
-                        Porte moon - {% if app.user %}{{ app.user.numberOfMoons }}{% endif %}
+                        Porte moon{% if app.user %} - {{ app.user.numberOfMoons }}{% endif %}
                         </a>
                     </li>
                     <li>
