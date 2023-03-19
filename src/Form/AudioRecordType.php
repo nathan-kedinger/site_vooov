@@ -3,6 +3,9 @@
 namespace App\Form;
 
 use App\Entity\AudioRecords;
+use App\Entity\Categories;
+use App\Repository\CategoriesRepository;
+use App\Repository\VoiceStyleRepository;
 use Symfony\Component\Form\AbstractType;
 use Symfony\Component\Form\Extension\Core\Type\ChoiceType;
 use Symfony\Component\Form\Extension\Core\Type\TextareaType;
@@ -12,6 +15,14 @@ use Symfony\Component\OptionsResolver\OptionsResolver;
 
 class AudioRecordType extends AbstractType
 {
+    private CategoriesRepository $categoriesRepository;
+    private VoiceStyleRepository $voiceStyleRepository;
+
+    public function __construct(CategoriesRepository $categoriesRepository, VoiceStyleRepository $voiceStyleRepository)
+    {
+        $this->categoriesRepository = $categoriesRepository;
+        $this->voiceStyleRepository = $voiceStyleRepository;
+    }
     public function buildForm(FormBuilderInterface $builder, array $options): void
     {
         $builder
@@ -22,29 +33,12 @@ class AudioRecordType extends AbstractType
                 ]
 
             ])
-            ->add('voice_style',ChoiceType::class, [
-                'label' => 'Le style de voix',
-                'choices' => [
-                    'Chant' => 'Chant',
-                    'Culture' => 'Culture',
-                    'Voix-Off' => 'Voix-Off',
-                    'Humour' => 'Humour',
-                    'Actualités' => 'Actualités'
-                ]
+            ->add('voice_style', ChoiceType::class, [
+                'choices' => $this->voiceStyleRepository->getVoiceStyleChoices(),
 
             ])
-            ->add('kind',ChoiceType::class, [
-                'label' => 'Le style de voix',
-                'choices' => [
-                    'Soprano' => '1',
-                    'Mezzo-Soprano' => 'Mezzo-Soprano',
-                    'Contralto' => 'Contralto',
-                    'Contre-Ténor' => 'Contre-Ténor',
-                    'Ténor' => 'Ténor',
-                    'Baryton' => 'Baryton',
-                    'Basse' => 'Basse'
-                ]
-
+            ->add('categories', ChoiceType::class, [
+                'choices' => $this->categoriesRepository->getCategoriesChoices(),
             ])
             ->add('description',TextareaType::class, [
                 'label' => 'Déscription',

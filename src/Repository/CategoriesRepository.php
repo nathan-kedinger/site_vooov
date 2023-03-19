@@ -40,6 +40,17 @@ class CategoriesRepository extends ServiceEntityRepository
         }
     }
 
+    public function getCategoriesChoices(): array
+    {
+        $categories = $this->findAll();
+
+        $choices = array();
+        foreach ($categories as $category) {
+            $choices[$category->getName()] = $category;
+        }
+
+        return $choices;
+    }
 //    /**
 //     * @return Categories[] Returns an array of Categories objects
 //     */
