@@ -1,0 +1,11 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}Hello AccountController!{% endblock %}
+
+{% block content %}
+
+    {% if is_granted('ROLE_ADMIN') %}
+        <a class="btn btn-primary bottom-right" href="{{ path('admin') }}">To Dashboard</a>
+    {% endif %}
+
+{% endblock %}
