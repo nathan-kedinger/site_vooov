@@ -3,8 +3,8 @@
 namespace App\Form;
 
 use App\Entity\AudioRecords;
-use App\Entity\Categories;
-use App\Repository\CategoriesRepository;
+use App\Entity\AudioRecordCategories;
+use App\Repository\AudioRecordCategoriesRepository;
 use App\Repository\VoiceStyleRepository;
 use Symfony\Component\Form\AbstractType;
 use Symfony\Component\Form\Extension\Core\Type\ChoiceType;
@@ -15,10 +15,10 @@ use Symfony\Component\OptionsResolver\OptionsResolver;
 
 class AudioRecordType extends AbstractType
 {
-    private CategoriesRepository $categoriesRepository;
+    private AudioRecordCategoriesRepository $categoriesRepository;
     private VoiceStyleRepository $voiceStyleRepository;
 
-    public function __construct(CategoriesRepository $categoriesRepository, VoiceStyleRepository $voiceStyleRepository)
+    public function __construct(AudioRecordCategoriesRepository $categoriesRepository, VoiceStyleRepository $voiceStyleRepository)
     {
         $this->categoriesRepository = $categoriesRepository;
         $this->voiceStyleRepository = $voiceStyleRepository;

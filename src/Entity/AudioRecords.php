@@ -44,7 +44,7 @@ class AudioRecords
 
 
     #[ORM\ManyToOne(inversedBy: 'audioRecords')]
-    private ?Categories $categories = null;
+    private ?AudioRecordCategories $categories = null;
 
 
     #[ORM\ManyToOne(inversedBy: 'audioRecords')]
@@ -164,12 +164,12 @@ class AudioRecords
         return $this;
     }
 
-    public function getCategories(): ?Categories
+    public function getCategories(): ?AudioRecordCategories
     {
         return $this->categories;
     }
 
-    public function setCategories(?Categories $categories): self
+    public function setCategories(?AudioRecordCategories $categories): self
     {
         $this->categories = $categories;
 

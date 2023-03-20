@@ -2,7 +2,7 @@
 
 namespace App\Controller\Admin;
 
-use App\Entity\Categories;
+use App\Entity\AudioRecordCategories;
 use App\Entity\Users;
 use App\Entity\VoiceStyle;
 use EasyCorp\Bundle\EasyAdminBundle\Config\Dashboard;
@@ -47,7 +47,7 @@ class DashboardController extends AbstractDashboardController
         yield MenuItem::linkToDashboard('Dashboard', 'fa fa-home');
         yield MenuItem::linkToCrud('Utilisateurs', 'fas fa-user', Users::class);
         yield MenuItem::linkToCrud('Styles de voix', 'fas fa-user', VoiceStyle::class);
-        yield MenuItem::linkToCrud('Type d\'enregistrements', 'fas fa-', Categories::class);
+        yield MenuItem::linkToCrud('Type d\'enregistrements', 'fas fa-', AudioRecordCategories::class);
         yield MenuItem::linkToRoute('Retour au site', 'fas fa-right-from-bracket', 'app_account');
         yield MenuItem::linkToLogout('Déconnexion', 'fas fa-power-off');
     }

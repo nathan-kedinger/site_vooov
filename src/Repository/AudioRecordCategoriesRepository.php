@@ -3,26 +3,25 @@
 namespace App\Repository;
 
 use App\Entity\AudioRecordCategories;
-use App\Entity\Categories;
 use Doctrine\Bundle\DoctrineBundle\Repository\ServiceEntityRepository;
 use Doctrine\Persistence\ManagerRegistry;
 
 /**
- * @extends ServiceEntityRepository<Categories>
+ * @extends ServiceEntityRepository<AudioRecordCategories>
  *
- * @method Categories|null find($id, $lockMode = null, $lockVersion = null)
- * @method Categories|null findOneBy(array $criteria, array $orderBy = null)
- * @method Categories[]    findAll()
- * @method Categories[]    findBy(array $criteria, array $orderBy = null, $limit = null, $offset = null)
+ * @method AudioRecordCategories|null find($id, $lockMode = null, $lockVersion = null)
+ * @method AudioRecordCategories|null findOneBy(array $criteria, array $orderBy = null)
+ * @method AudioRecordCategories[]    findAll()
+ * @method AudioRecordCategories[]    findBy(array $criteria, array $orderBy = null, $limit = null, $offset = null)
  */
-class CategoriesRepository extends ServiceEntityRepository
+class AudioRecordCategoriesRepository extends ServiceEntityRepository
 {
     public function __construct(ManagerRegistry $registry)
     {
-        parent::__construct($registry, Categories::class);
+        parent::__construct($registry, AudioRecordCategories::class);
     }
 
-    public function save(Categories $entity, bool $flush = false): void
+    public function save(AudioRecordCategories $entity, bool $flush = false): void
     {
         $this->getEntityManager()->persist($entity);
 
@@ -31,7 +30,7 @@ class CategoriesRepository extends ServiceEntityRepository
         }
     }
 
-    public function remove(Categories $entity, bool $flush = false): void
+    public function remove(AudioRecordCategories $entity, bool $flush = false): void
     {
         $this->getEntityManager()->remove($entity);
 
@@ -40,6 +39,10 @@ class CategoriesRepository extends ServiceEntityRepository
         }
     }
 
+    /**
+     * Return an array of the different ables  audio record categories
+     * @return array
+     */
     public function getCategoriesChoices(): array
     {
         $categories = $this->findAll();
@@ -52,7 +55,7 @@ class CategoriesRepository extends ServiceEntityRepository
         return $choices;
     }
 //    /**
-//     * @return Categories[] Returns an array of Categories objects
+//     * @return AudioRecordCategories[] Returns an array of AudioRecordCategories objects
 //     */
 //    public function findByExampleField($value): array
 //    {
@@ -66,7 +69,7 @@ class CategoriesRepository extends ServiceEntityRepository
 //        ;
 //    }
 
-//    public function findOneBySomeField($value): ?Categories
+//    public function findOneBySomeField($value): ?AudioRecordCategories
 //    {
 //        return $this->createQueryBuilder('c')
 //            ->andWhere('c.exampleField = :val')

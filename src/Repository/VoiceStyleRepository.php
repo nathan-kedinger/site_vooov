@@ -39,6 +39,10 @@ class VoiceStyleRepository extends ServiceEntityRepository
         }
     }
 
+    /**
+     * Return an array of the different ables voiceStyle
+     * @return array
+     */
     public function getVoiceStyleChoices()
     {
         $voiceStyles = $this->findAll();
