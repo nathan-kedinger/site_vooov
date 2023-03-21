@@ -40,7 +40,7 @@ class AudioRecords
 
     #[ORM\ManyToOne(inversedBy: 'audioRecords')]
     #[ORM\JoinColumn(nullable: false)]
-    private ?Users $artist_id = null;
+    private ?Users $artist = null;
 
 
     #[ORM\ManyToOne(inversedBy: 'audioRecords')]
@@ -154,12 +154,12 @@ class AudioRecords
 
     public function getArtistId(): ?Users
     {
-        return $this->artist_id;
+        return $this->artist;
     }
 
-    public function setArtistId(?Users $artist_id): self
+    public function setArtistId(?Users $artist): self
     {
-        $this->artist_id = $artist_id;
+        $this->artist = $artist;
 
         return $this;
     }

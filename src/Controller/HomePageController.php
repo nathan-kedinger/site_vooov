@@ -20,10 +20,15 @@ class HomePageController extends AbstractController
         $form->handleRequest($request);
     
         $filteredRecords = [];
-    
+
         if($form->isSubmitted() && $form->isValid()){
             $query = $form->get('title')->getData();
             $filteredRecords = $records->selectedAudioRecordsList($query);
+
+            // Ajouter ce code pour le débogage
+            if(empty($filteredRecords)) {
+                $this->addFlash('warning', 'Aucun enregistrement trouvé pour votre recherche.');
+            }
         } else {
             $filteredRecords = $records->audioRecordsList();
         }

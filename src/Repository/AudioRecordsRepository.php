@@ -42,16 +42,28 @@ class AudioRecordsRepository extends ServiceEntityRepository
     /**
      * @return AudioRecords[] Returns an array of AudioRecords objects
      */
-    public function selectedAudioRecordsList($title): array
+    public function findByTitle($title): array
     {
         $query = $this->createQueryBuilder('a')
-            ->where('a.title LIKE :val')
-            ->setParameter('val', "%{$title}%")
+            ->join('a.artist', 'user')
+            ->join('a.categories', 'categories')
+            ->join('a.voice_style', 'voice')
+            ->where('a.title LIKE :title')
+            ->orWhere('user.pseudo LIKE :pseudo')
+            ->orWhere('categories.name LIKE :categories')
+            ->orWhere('voice.voice_style LIKE :voice')
+            ->setParameters([
+                'title' => "%{$title}%",
+                'pseudo' => "%{$title}%",
+                'categories' => "%" . ucfirst($title) . "%",
+                'voice' => "%" . ucfirst($title) . "%",
+            ])
             ->orderBy('a.id', 'DESC')
             ->getQuery();
-    
+
         return $query->getResult();
     }
+
 
 //    public function findOneBySomeField($value): ?AudioRecords
 //    {

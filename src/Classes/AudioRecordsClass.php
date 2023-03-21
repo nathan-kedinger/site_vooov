@@ -20,10 +20,8 @@ class AudioRecordsClass{
     }
 
     public function selectedAudioRecordsList($title){
-        $records = $this->em->getRepository(AudioRecords::class)->findBytitle($title);
-        
+        $records = $this->em->getRepository(AudioRecords::class)->findByTitle($title);
+
         return $records;
     }
-    
-
 }
