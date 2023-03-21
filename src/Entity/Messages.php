@@ -20,12 +20,6 @@ class Messages
     #[ORM\Column(length: 36)]
     private ?string $conversation_uuid = null;
 
-    #[ORM\Column(length: 36)]
-    private ?string $sender = null;
-
-    #[ORM\Column(length: 36)]
-    private ?string $receiver = null;
-
     #[ORM\Column(type: Types::TEXT)]
     private ?string $body = null;
 
@@ -34,6 +28,14 @@ class Messages
 
     #[ORM\Column(length: 255)]
     private ?string $send_at = null;
+
+    #[ORM\ManyToOne(inversedBy: 'messages')]
+    #[ORM\JoinColumn(nullable: false)]
+    private ?Users $sender = null;
+
+    #[ORM\ManyToOne(inversedBy: 'messages')]
+    #[ORM\JoinColumn(nullable: false)]
+    private ?Users $receiver = null;
 
     public function getId(): ?int
     {
@@ -60,30 +62,6 @@ class Messages
     public function setConversationUuid(string $conversation_uuid): self
     {
         $this->conversation_uuid = $conversation_uuid;
-
-        return $this;
-    }
-
-    public function getSender(): ?string
-    {
-        return $this->sender;
-    }
-
-    public function setSender(string $sender): self
-    {
-        $this->sender = $sender;
-
-        return $this;
-    }
-
-    public function getReceiver(): ?string
-    {
-        return $this->receiver;
-    }
-
-    public function setReceiver(string $receiver): self
-    {
-        $this->receiver = $receiver;
 
         return $this;
     }
@@ -120,6 +98,30 @@ class Messages
     public function setSendAt(string $send_at): self
     {
         $this->send_at = $send_at;
+
+        return $this;
+    }
+
+    public function getSender(): ?Users
+    {
+        return $this->sender;
+    }
+
+    public function setSender(?Users $sender): self
+    {
+        $this->sender = $sender;
+
+        return $this;
+    }
+
+    public function getReceiver(): ?Users
+    {
+        return $this->receiver;
+    }
+
+    public function setReceiver(?Users $receiver): self
+    {
+        $this->receiver = $receiver;
 
         return $this;
     }

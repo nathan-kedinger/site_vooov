@@ -46,13 +46,26 @@
                                         <input type="text" class="form-control" aria-label="Amount (to the nearest dollar)">
                                         <button class="btn btn-outline-light border-radius-25" type="submit">Envoyer</button>
                                     </div>
-                                    <a href="{{ path('home_page_message', {'id': record.artistId.id}) }}" class="btn btn-primary">Envoyer un message</a>
+                                    <a href="{{ path('home_page_message', {'id': record.artistId.id}) }}" class="btn btn-primary" data-bs-toggle="modal" data-bs-target="#exampleModal" data-bs-whatever="@fat">Envoyer un message</a>
                                     <a href="{{ path('app_other_user', {'pseudo': record.artistId.pseudo}) }}" class="btn btn-primary">Voir le profil</a>
                                 </div>
                                 <div class="col-md-7">
                                     <p>Télécharger l'enregistrement</p>
                                     <img src="{{ asset('assets/img/download.svg') }}" class="" data-bs-toggle="collapse" href="#collapse{{ record.id }}" role="button" aria-expanded="false" aria-controls="collapseExample"></img>
                                     <p>Prix : 10000 <img src="{{ asset('assets/img/moon.svg') }}" class="very-small-size-logo"> </p><!-- Add the downloading price from the record -->
+                                </div>
+                            </div>
+                        </div>
+                        <div class="modal fade" id="exampleModal" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="false">
+                            <div class="modal-dialog">
+                                <div class="modal-content">
+                                    <div class="modal-header">
+                                        <h1 class="modal-title fs-5" id="exampleModalLabel">New message</h1>
+                                        <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                                    </div>
+                                    <div class="modal-body">
+                                        {{ form(sendingMessage) }}
+                                    </div>
                                 </div>
                             </div>
                         </div>

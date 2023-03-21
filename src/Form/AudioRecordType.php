@@ -31,11 +31,9 @@ class AudioRecordType extends AbstractType
                 'attr' => [
                     'placeholder' =>  'Donnez un titre à cet enregistrement'
                 ]
-
             ])
             ->add('voice_style', ChoiceType::class, [
                 'choices' => $this->voiceStyleRepository->getVoiceStyleChoices(),
-
             ])
             ->add('categories', ChoiceType::class, [
                 'choices' => $this->categoriesRepository->getCategoriesChoices(),
@@ -45,7 +43,6 @@ class AudioRecordType extends AbstractType
                 'attr' => [
                     'placeholder' =>  'Écrivez une déscription à propos de cet enregistrement.'
                 ]
-
             ])
         ;
     }

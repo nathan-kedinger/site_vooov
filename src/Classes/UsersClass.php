@@ -18,4 +18,15 @@ class UsersClass{
         return $users;
     }
 
+    public function findOneUserByPseudo($pseudo){
+        $user = $this->em->getRepository(Users::class)->findByPseudo($pseudo);
+
+        return $user;
+    }
+
+    public function findOneUserById($id){
+        $user = $this->em->getRepository(Users::class)->findById($id);
+
+        return $user;
+    }
 }

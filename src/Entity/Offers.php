@@ -26,9 +26,6 @@ class Offers
     #[ORM\Column]
     private ?int $budget = null;
 
-    #[ORM\Column(length: 255)]
-    private ?string $voice_type = null;
-
     #[ORM\Column]
     private ?bool $accomplished = null;
 
@@ -41,6 +38,10 @@ class Offers
     #[ORM\ManyToOne(inversedBy: 'offers')]
     #[ORM\JoinColumn(nullable: false)]
     private ?Users $user_id = null;
+
+    #[ORM\ManyToOne(inversedBy: 'offers')]
+    #[ORM\JoinColumn(nullable: false)]
+    private ?VoiceStyle $voice_style = null;
 
 
 
@@ -97,18 +98,6 @@ class Offers
         return $this;
     }
 
-    public function getVoiceType(): ?string
-    {
-        return $this->voice_type;
-    }
-
-    public function setVoiceType(string $voiceType): self
-    {
-        $this->voice_type = $voiceType;
-
-        return $this;
-    }
-
     public function isAccomplished(): ?bool
     {
         return $this->accomplished;
@@ -154,6 +143,18 @@ class Offers
     public function setUserId(?Users $user_id): self
     {
         $this->user_id = $user_id;
+
+        return $this;
+    }
+
+    public function getVoiceStyle(): ?VoiceStyle
+    {
+        return $this->voice_style;
+    }
+
+    public function setVoiceStyle(?VoiceStyle $voice_style): self
+    {
+        $this->voice_style = $voice_style;
 
         return $this;
     }

@@ -3,6 +3,8 @@
 namespace App\Form;
 
 use App\Entity\Offers;
+use App\Repository\AudioRecordCategoriesRepository;
+use App\Repository\VoiceStyleRepository;
 use DateTime;
 use Symfony\Component\Form\AbstractType;
 use Symfony\Component\Form\Extension\Core\Type\CheckboxType;
@@ -18,6 +20,12 @@ use Symfony\Component\Validator\Constraints\IsTrue;
 
 class OfferType extends AbstractType
 {
+    private VoiceStyleRepository $voiceStyleRepository;
+
+    public function __construct(VoiceStyleRepository $voiceStyleRepository)
+    {
+        $this->voiceStyleRepository = $voiceStyleRepository;
+    }
     public function buildForm(FormBuilderInterface $builder, array $options): void
     {
         $builder
@@ -39,24 +47,17 @@ class OfferType extends AbstractType
                 'placeholder' => 'Indiquer le nombre de moons que vous pourriez donner pour cet enregistrement'
             ]
         ])
-        ->add('voice_type',ChoiceType::class, [
+        ->add('voice_style',ChoiceType::class, [
             'label' => 'Le style de voix',
-            'choices' => [
-                'Soprano' => 'Soprano',
-                'Mezzo-Soprano' => 'Mezzo-Soprano',
-                'Contralto' => 'Contralto',
-                'Contre-Ténor' => 'Contre-Ténor',
-                'Ténor' => 'Ténor',
-                'Baryton' => 'Baryton',
-                'Basse' => 'Basse'
-            ]
+            'choices' => $this->voiceStyleRepository->getVoiceStyleChoices(),
         ])
+            //Needs to be destroyed when this date is reached
         ->add('end_at', DateType::class, [
             'label' => 'Date de fin',
             'widget' => 'choice',
         ])
         ->add('submit', SubmitType::class, [
-            'label' => 'Inscription',
+            'label' => 'Poster l\'annonce',
             'attr' => [
                 'class' => 'btn buttons btn-primary w-100 mt-4'
             ]

@@ -39,28 +39,35 @@ class ConversationsRepository extends ServiceEntityRepository
         }
     }
 
-//    /**
-//     * @return Conversations[] Returns an array of Conversations objects
-//     */
-//    public function findByExampleField($value): array
-//    {
-//        return $this->createQueryBuilder('c')
-//            ->andWhere('c.exampleField = :val')
-//            ->setParameter('val', $value)
-//            ->orderBy('c.id', 'ASC')
-//            ->setMaxResults(10)
-//            ->getQuery()
-//            ->getResult()
-//        ;
-//    }
+    /**
+     * @return ConversationsClass[] Returns an array of Conversations objects
+     */
+    public function findConversations($userId): array
+    {
+        return $this->createQueryBuilder('c')
+            ->andWhere('c.sender = :val')
+            ->andWhere('c.receiver = :val')
+            ->setParameter('val', $userId)
+            ->orderBy('c.id', 'ASC')
+            ->setMaxResults(15)
+            ->getQuery()
+            ->getResult()
+        ;
+    }
 
-//    public function findOneBySomeField($value): ?Conversations
-//    {
-//        return $this->createQueryBuilder('c')
-//            ->andWhere('c.exampleField = :val')
-//            ->setParameter('val', $value)
-//            ->getQuery()
-//            ->getOneOrNullResult()
-//        ;
-//    }
+    public function findOneConversation($senderId, $receiverId): ?Conversations
+    {
+        return $this->createQueryBuilder('c')
+            ->andWhere('c.sender = :sender')
+            ->orWhere('c.sender = :receiver')
+            ->andWhere('c.receiver = :receiver')
+            ->orWhere('c.receiver = :sender')
+            ->setParameters([
+                'sender' => "{$senderId}",
+                'receiver' => "{$receiverId}",
+                ])
+            ->getQuery()
+            ->getOneOrNullResult()
+        ;
+    }
 }

@@ -14,14 +14,10 @@ class AudioRecordsClass{
     }
 
     public function audioRecordsList(){
-        $records = $this->em->getRepository(AudioRecords::class)->findAll();
-
-        return $records;
+        return $this->em->getRepository(AudioRecords::class)->findAll();
     }
 
     public function selectedAudioRecordsList($title){
-        $records = $this->em->getRepository(AudioRecords::class)->findByTitle($title);
-
-        return $records;
+        return $this->em->getRepository(AudioRecords::class)->findByTitle($title);
     }
 }

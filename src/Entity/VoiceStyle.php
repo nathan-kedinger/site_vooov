@@ -21,9 +21,13 @@ class VoiceStyle
     #[ORM\OneToMany(mappedBy: 'voice_style', targetEntity: AudioRecords::class)]
     private Collection $audioRecords;
 
+    #[ORM\OneToMany(mappedBy: 'voice_style', targetEntity: Offers::class)]
+    private Collection $offers;
+
     public function __construct()
     {
         $this->audioRecords = new ArrayCollection();
+        $this->offers = new ArrayCollection();
     }
 
     public function getId(): ?int
@@ -67,6 +71,36 @@ class VoiceStyle
             // set the owning side to null (unless already changed)
             if ($audioRecord->getVoiceStyle() === $this) {
                 $audioRecord->setVoiceStyle(null);
+            }
+        }
+
+        return $this;
+    }
+
+    /**
+     * @return Collection<int, Offers>
+     */
+    public function getOffers(): Collection
+    {
+        return $this->offers;
+    }
+
+    public function addOffer(Offers $offer): self
+    {
+        if (!$this->offers->contains($offer)) {
+            $this->offers->add($offer);
+            $offer->setVoiceStyle($this);
+        }
+
+        return $this;
+    }
+
+    public function removeOffer(Offers $offer): self
+    {
+        if ($this->offers->removeElement($offer)) {
+            // set the owning side to null (unless already changed)
+            if ($offer->getVoiceStyle() === $this) {
+                $offer->setVoiceStyle(null);
             }
         }
 
