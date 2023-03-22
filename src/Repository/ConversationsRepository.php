@@ -3,7 +3,10 @@
 namespace App\Repository;
 
 use App\Entity\Conversations;
+use App\Entity\Users;
 use Doctrine\Bundle\DoctrineBundle\Repository\ServiceEntityRepository;
+use Doctrine\ORM\EntityManager;
+use Doctrine\ORM\EntityManagerInterface;
 use Doctrine\Persistence\ManagerRegistry;
 
 /**
@@ -16,9 +19,11 @@ use Doctrine\Persistence\ManagerRegistry;
  */
 class ConversationsRepository extends ServiceEntityRepository
 {
-    public function __construct(ManagerRegistry $registry)
+    public function __construct(ManagerRegistry $registry, EntityManagerInterface $em)
     {
         parent::__construct($registry, Conversations::class);
+        $this->em = $em;
+
     }
 
     public function save(Conversations $entity, bool $flush = false): void
@@ -57,14 +62,17 @@ class ConversationsRepository extends ServiceEntityRepository
 
     public function findOneConversation($senderId, $receiverId): ?Conversations
     {
+        $sender = $this->em->getRepository(Users::class)->find($senderId);
+        $receiver = $this->em->getRepository(Users::class)->find($receiverId);
+
         return $this->createQueryBuilder('c')
             ->andWhere('c.sender = :sender')
             ->orWhere('c.sender = :receiver')
             ->andWhere('c.receiver = :receiver')
             ->orWhere('c.receiver = :sender')
             ->setParameters([
-                'sender' => "{$senderId}",
-                'receiver' => "{$receiverId}",
+                'sender' => $sender,
+                'receiver' => $receiver,
                 ])
             ->getQuery()
             ->getOneOrNullResult()

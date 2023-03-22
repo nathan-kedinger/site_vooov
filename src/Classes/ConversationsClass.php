@@ -23,7 +23,7 @@ class ConversationsClass
         $conversation->setUuid($uuid_string);
         $conversation->setSender($sender);
         $conversation->setReceiver($receiver);
-        $conversation->setTitle("{$sender}" . " et " ."$receiver");
+        $conversation->setTitle("{$sender->getPseudo()}" . " et " ."{$receiver->getPseudo()}");
         $conversation->setCreatedAt($actualeDate_string);
         $conversation->setUpdatedAt($actualeDate_string);
 

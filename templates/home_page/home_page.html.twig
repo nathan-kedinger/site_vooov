@@ -46,7 +46,7 @@
                                         <input type="text" class="form-control" aria-label="Amount (to the nearest dollar)">
                                         <button class="btn btn-outline-light border-radius-25" type="submit">Envoyer</button>
                                     </div>
-                                    <a href="{{ path('home_page_message', {'id': record.artistId.id}) }}" class="btn btn-primary">Envoyer un message</a>
+                                    <a href="{{ path('app_first_message', {'id': record.artistId.id}) }}" class="btn btn-primary">Envoyer un message</a>
                                     <a href="{{ path('app_other_user', {'pseudo': record.artistId.pseudo}) }}" class="btn btn-primary">Voir le profil</a>
                                 </div>
                                 <div class="col-md-7">
