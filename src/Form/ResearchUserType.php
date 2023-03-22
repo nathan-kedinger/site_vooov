@@ -20,15 +20,9 @@ class ResearchUserType extends AbstractType
             'required' => false,
             'attr' => [
                 'class' => 'form-control',
-                'placeholder' => 'Entrez un mot-clé'
+                'placeholder' => 'Rechercher un utilisateur'
             ]
         ])
-        ->add('recherche', SubmitType::class, [
-            'attr' => [
-                'class' => 'btn btn-primary'
-            ]
-        ])
-
         ;
     }
 

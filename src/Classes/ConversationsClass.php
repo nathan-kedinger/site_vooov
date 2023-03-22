@@ -37,11 +37,22 @@ class ConversationsClass
         $this->em->flush();
     }
 
-    public function findOneConversation($senderId, $receiverId){
+    /**
+     * @param $senderId
+     * @param $receiverId
+     * @return Conversations|null
+     */
+    public function findOneConversation($senderId, $receiverId): Conversations|null
+    {
         return $this->em->getRepository(Conversations::class)->findOneConversation($senderId, $receiverId);
     }
 
-    public function findCurrentUserConversations($currentUserId){
+    /**
+     * @param $currentUserId
+     * @return ConversationsClass[]
+     */
+    public function findCurrentUserConversations($currentUserId): array
+    {
         return $this->em->getRepository(Conversations::class)->findConversations($currentUserId);
     }
 }

@@ -37,7 +37,7 @@ class FirstMessageController extends AbstractController
         if ($sendingMessage->isSubmitted() && $sendingMessage->isValid() && $security->isGranted('IS_AUTHENTICATED_FULLY')) {
             $user = $security->getUser();
             $targetedConversation = $conversations->findOneConversation($user, $receiver);
-            $body = $sendingMessage->get('body')->getData(); // Ajout de cette ligne
+            $body = $sendingMessage->get('body')->getData();
 
             if($targetedConversation == null) {
                 $conversations->createConversations($user, $receiver);

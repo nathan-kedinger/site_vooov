@@ -21,8 +21,13 @@ use Symfony\Component\Routing\Annotation\Route;
 
 class HomePageController extends AbstractController
 {
+    /**
+     * @param AudioRecordsClass $records
+     * @param Request $request
+     * @return Response
+     */
     #[Route('/', name: 'home_page')]
-    public function index(AudioRecordsClass $records, ConversationsClass $conversations, Request $request, Security $security): Response
+    public function index(AudioRecordsClass $records, Request $request): Response
     {
         $recordForm = new AudioRecords;
         $researchForm = $this->createForm(ResearchRecordType::class, $recordForm);

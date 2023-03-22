@@ -34,69 +34,84 @@
                 <img src="{{ asset('assets/img/main-background.png') }}" class="image-background">
                 <!-- End background image--> 
             {% endif %}
-            <!-- Left Side Menu --> 
-            <div class="d-flex flex-column flex-shrink-0 p-3 main-background side-menu-width">
-                <a href="/" class="d-flex align-items-center mb-3 mb-md-0 me-md-auto text-white text-decoration-none">
-                    <img src="{{ asset('assets/img/logo_vooov.png') }}" class="bi pe-none me-2 main-logo">
-                    <span class="fs-4"><h1>Vooov</h1></span>
-                </a>
-                <hr>
-                <ul class="nav nav-pills flex-column mb-auto">
-                    <li class="nav-item">
-                        <a href="{{ path('app_studio') }}" class="nav-link link-light" aria-current="page">
-                        <img src="{{ asset('assets/img/record.svg') }}" class="bi pe-none me-2 links-logos">
-                        Studio
-                        </a>
-                    </li>
-                    <li>
-                        <a href="/" class="nav-link text-white">
-                        <img src="{{ asset('assets/img/home.png') }}" class="bi pe-none me-2 links-logos">
-                        Accueil
-                        </a>
-                    </li>
-                    <li>
-                        <a href="{{ path('app_offers') }}" class="nav-link text-white">
-                        <img src="{{ asset('assets/img/offers.png') }}" class="bi pe-none me-2 links-logos">
-                        Offres
-                        </a>
-                    </li>
-                    <li>
-                        <a href="{{ path('app_wallet') }}" class="nav-link text-white">
-                        <img src="{{ asset('assets/img/wallet.png') }}" class="bi pe-none me-2 links-logos">
-                        Porte moon{% if app.user %} - {{ app.user.numberOfMoons }}{% endif %}
-                        </a>
-                    </li>
-                    <li>
-                        <a href="{{ path('app_community') }}" class="nav-link text-white">
-                        <img src="{{ asset('assets/img/community.png') }}" class="bi pe-none me-2 links-logos">
-                        Communauté
-                        </a>
-                    </li>
-                    <li>
-                        <a href="#" class="nav-link text-white" data-bs-toggle="offcanvas" data-bs-target="#offcanvasScrolling" aria-controls="offcanvasScrolling">
-                        <img src="{{ asset('assets/img/conversations.png') }}" class="bi pe-none me-2 links-logos">
-                        Messages
-                        </a>
-                    </li>
-                    <hr>
-                    <li>
-                        {% if app.user %}
-                            <a href="{{ path('app_logout') }}" class="nav-link text-white">
-                            <img src="{{ asset('assets/img/logout.png') }}" class="bi pe-none me-2 links-logos">
-                            Déconnexion
-                            </a>
-                        {% else %}
-                            <a href="{{ path('app_login') }}" class="nav-link text-white">
-                            <img src="{{ asset('assets/img/logout.png') }}" class="bi pe-none me-2 links-logos">
-                            Connexion
-                            </a>
-                        {% endif %}
-                    </li>
-                </ul>
-            </div>
+            <!-- Left Side Menu -->
+            <a href="/" class="left-top-main-logo  text-white text-decoration-none">
+                <img src="{{ asset('assets/img/logo_vooov.png') }}" class="bi pe-none me-2 main-logo">
+                <span class="fs-4"><h1>Vooov</h1></span>
+            </a>
+            <nav class="navbar navbar-dark open-menu-button">
+                <div class="container-fluid">
+                    <button class="navbar-toggler" type="button" data-bs-toggle="offcanvas" data-bs-target="#offcanvasNavbar" aria-controls="offcanvasNavbar">
+                        <span class="navbar-toggler-icon"></span>
+                    </button>
+                    <div class="offcanvas offcanvas-start text-white main-background" tabindex="-1" id="offcanvasNavbar" aria-labelledby="offcanvasNavbarLabel">
+                        <div class="offcanvas-header d-flex justify-content-end">
+
+                            <button type="button" class="btn-close btn-close-white me-2" data-bs-dismiss="offcanvas" aria-label="Close"></button>
+                        </div>
+                        <div class="offcanvas-body">
+                            <ul class="nav nav-pills flex-column mb-auto">
+                                <br>
+                                <hr class="mt-5 mb-5">
+                                <li class="nav-item">
+                                    <a href="{{ path('app_studio') }}" class="nav-link link-light" aria-current="page">
+                                        <img src="{{ asset('assets/img/record.svg') }}" class="bi pe-none me-2 links-logos">
+                                        Studio
+                                    </a>
+                                </li>
+                                <li>
+                                    <a href="/" class="nav-link text-white">
+                                        <img src="{{ asset('assets/img/home.png') }}" class="bi pe-none me-2 links-logos">
+                                        Accueil
+                                    </a>
+                                </li>
+                                <li>
+                                    <a href="{{ path('app_offers') }}" class="nav-link text-white">
+                                        <img src="{{ asset('assets/img/offers.png') }}" class="bi pe-none me-2 links-logos">
+                                        Offres
+                                    </a>
+                                </li>
+                                <li>
+                                    <a href="{{ path('app_wallet') }}" class="nav-link text-white">
+                                        <img src="{{ asset('assets/img/wallet.png') }}" class="bi pe-none me-2 links-logos">
+                                        Porte moon{% if app.user %} - {{ app.user.numberOfMoons }}{% endif %}
+                                    </a>
+                                </li>
+                                <li>
+                                    <a href="{{ path('app_community') }}" class="nav-link text-white">
+                                        <img src="{{ asset('assets/img/community.png') }}" class="bi pe-none me-2 links-logos">
+                                        Communauté
+                                    </a>
+                                </li>
+                                <li>
+                                    <a href="#" class="nav-link text-white" data-bs-toggle="offcanvas" data-bs-target="#offcanvasScrolling" aria-controls="offcanvasScrolling">
+                                        <img src="{{ asset('assets/img/conversations.png') }}" class="bi pe-none me-2 links-logos">
+                                        Messages
+                                    </a>
+                                </li>
+                                <hr class="mt-5 mb-5">
+                                <li>
+                                    {% if app.user %}
+                                        <a href="{{ path('app_logout') }}" class="nav-link text-white">
+                                            <img src="{{ asset('assets/img/logout.png') }}" class="bi pe-none me-2 links-logos">
+                                            Déconnexion
+                                        </a>
+                                    {% else %}
+                                        <a href="{{ path('app_login') }}" class="nav-link text-white">
+                                            <img src="{{ asset('assets/img/logout.png') }}" class="bi pe-none me-2 links-logos">
+                                            Connexion
+                                        </a>
+                                    {% endif %}
+                                </li>
+                            </ul>
+                        </div>
+                    </div>
+                </div>
+            </nav>
+
             <!-- End left Side Menu --> 
             <!-- Right conversations side bar -->
-            <div class="offcanvas offcanvas-end w-25" data-bs-scroll="true" data-bs-backdrop="false" tabindex="-1" id="offcanvasScrolling" aria-labelledby="offcanvasScrollingLabel">
+            <div class="offcanvas offcanvas-end " data-bs-scroll="true" data-bs-backdrop="false" tabindex="-1" id="offcanvasScrolling" aria-labelledby="offcanvasScrollingLabel">
                 <div class="offcanvas-header">
                     <h5 class="offcanvas-title" id="offcanvasScrollingLabel">Offcanvas with body scrolling</h5>
                     <button type="button" class="btn-close" data-bs-dismiss="offcanvas" aria-label="Close"></button>

@@ -8,25 +8,21 @@ use Doctrine\ORM\Mapping\Entity;
 use Symfony\Component\HttpFoundation\Request;
 
 class UsersClass{
+    private EntityManagerInterface $em;
+
     public function __construct(EntityManagerInterface $em){
         $this->em = $em;
     }
 
     public function UsersList(){
-        $users = $this->em->getRepository(Users::class)->findAll();
-
-        return $users;
+        return $this->em->getRepository(Users::class)->findAll();
     }
 
     public function findOneUserByPseudo($pseudo){
-        $user = $this->em->getRepository(Users::class)->findByPseudo($pseudo);
-
-        return $user;
+        return $this->em->getRepository(Users::class)->findByPseudo($pseudo);
     }
 
     public function findOneUserById($id){
-        $user = $this->em->getRepository(Users::class)->findById($id);
-
-        return $user;
+        return $this->em->getRepository(Users::class)->findById($id);
     }
 }

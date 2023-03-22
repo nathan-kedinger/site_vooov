@@ -15,17 +15,13 @@ class ResearchRecordType extends AbstractType
     {
         $builder
         ->add('title',TextType::class, [
-            'label' => null,
+            'label' => false,
             'attr' => [
             'class' => 'form-control me-2 search-bar align-self-center border-radius-25',
             'placeholder' =>  'Rechercher un enregistrement'
             ]
         ])
-        ->add('recherche', SubmitType::class, [
-            'attr' => [
-                'class' => 'btn btn-primary'
-            ]
-        ])
+
         ;
     }
 
@@ -33,8 +29,6 @@ class ResearchRecordType extends AbstractType
     {
         $resolver->setDefaults([
             'data_class' => AudioRecords::class,
-            'method' =>'GET',
-            'csrf_protection' => false
         ]);
     }
 }
