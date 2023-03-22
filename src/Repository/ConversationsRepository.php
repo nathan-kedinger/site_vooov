@@ -52,7 +52,7 @@ class ConversationsRepository extends ServiceEntityRepository
     {
         return $this->createQueryBuilder('c')
             ->andWhere('c.sender = :val')
-            ->andWhere('c.receiver = :val')
+            ->orWhere('c.receiver = :val')
             ->setParameter('val', $userId)
             ->orderBy('c.id', 'ASC')
             ->setMaxResults(15)
