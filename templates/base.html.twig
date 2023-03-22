@@ -27,16 +27,16 @@
         <div class="container-fluid ps-0">
             {% if block ('studioBackground') is defined %}
                 <!-- Background image --> 
-                    <img src="{{ asset('assets/img/studio-background.png') }}" class="image-background">
+                    <img src="{{ asset('assets/img/studio-background.png') }}" class="image-background" alt="Studio destktop background">
                 <!-- End background image--> 
             {% else %}
                 <!-- Background image --> 
-                <img src="{{ asset('assets/img/main-background.png') }}" class="image-background">
+                <img src="{{ asset('assets/img/main-background.png') }}" class="image-background" alt="Studio destktop background">
                 <!-- End background image--> 
             {% endif %}
             <!-- Left Side Menu -->
             <a href="/" class="left-top-main-logo  text-white text-decoration-none">
-                <img src="{{ asset('assets/img/logo_vooov.png') }}" class="bi pe-none me-2 main-logo">
+                <img src="{{ asset('assets/img/logo_vooov.png') }}" class="bi pe-none me-2 main-logo" alt="Website logo">
                 <span class="fs-4"><h1>Vooov</h1></span>
             </a>
             <nav class="navbar navbar-dark open-menu-button">
@@ -55,37 +55,37 @@
                                 <hr class="mt-5 mb-5">
                                 <li class="nav-item">
                                     <a href="{{ path('app_studio') }}" class="nav-link link-light" aria-current="page">
-                                        <img src="{{ asset('assets/img/record.svg') }}" class="bi pe-none me-2 links-logos">
+                                        <img src="{{ asset('assets/img/record.svg') }}" class="bi pe-none me-2 links-logos" alt="Microphone logo">
                                         Studio
                                     </a>
                                 </li>
                                 <li>
                                     <a href="/" class="nav-link text-white">
-                                        <img src="{{ asset('assets/img/home.png') }}" class="bi pe-none me-2 links-logos">
+                                        <img src="{{ asset('assets/img/home.png') }}" class="bi pe-none me-2 links-logos" alt="Home logo">
                                         Accueil
                                     </a>
                                 </li>
                                 <li>
                                     <a href="{{ path('app_offers') }}" class="nav-link text-white">
-                                        <img src="{{ asset('assets/img/offers.png') }}" class="bi pe-none me-2 links-logos">
+                                        <img src="{{ asset('assets/img/offers.png') }}" class="bi pe-none me-2 links-logos" alt="Book logo">
                                         Offres
                                     </a>
                                 </li>
                                 <li>
                                     <a href="{{ path('app_wallet') }}" class="nav-link text-white">
-                                        <img src="{{ asset('assets/img/wallet.png') }}" class="bi pe-none me-2 links-logos">
+                                        <img src="{{ asset('assets/img/wallet.png') }}" class="bi pe-none me-2 links-logos" alt="Wallet logo">
                                         Porte moon{% if app.user %} - {{ app.user.numberOfMoons }}{% endif %}
                                     </a>
                                 </li>
                                 <li>
                                     <a href="{{ path('app_community') }}" class="nav-link text-white">
-                                        <img src="{{ asset('assets/img/community.png') }}" class="bi pe-none me-2 links-logos">
+                                        <img src="{{ asset('assets/img/community.png') }}" class="bi pe-none me-2 links-logos" alt="Poeples logo">
                                         Communauté
                                     </a>
                                 </li>
                                 <li>
                                     <a href="#" class="nav-link text-white" data-bs-toggle="offcanvas" data-bs-target="#offcanvasScrolling" aria-controls="offcanvasScrolling">
-                                        <img src="{{ asset('assets/img/conversations.png') }}" class="bi pe-none me-2 links-logos">
+                                        <img src="{{ asset('assets/img/conversations.png') }}" class="bi pe-none me-2 links-logos" alt="Conversations logo">
                                         Messages
                                     </a>
                                 </li>
@@ -93,12 +93,12 @@
                                 <li>
                                     {% if app.user %}
                                         <a href="{{ path('app_logout') }}" class="nav-link text-white">
-                                            <img src="{{ asset('assets/img/logout.png') }}" class="bi pe-none me-2 links-logos">
+                                            <img src="{{ asset('assets/img/logout.png') }}" class="bi pe-none me-2 links-logos" alt="Logout login">
                                             Déconnexion
                                         </a>
                                     {% else %}
                                         <a href="{{ path('app_login') }}" class="nav-link text-white">
-                                            <img src="{{ asset('assets/img/logout.png') }}" class="bi pe-none me-2 links-logos">
+                                            <img src="{{ asset('assets/img/logout.png') }}" class="bi pe-none me-2 links-logos" alt="Logout logo">
                                             Connexion
                                         </a>
                                     {% endif %}
@@ -110,19 +110,21 @@
             </nav>
 
             <!-- End left Side Menu --> 
-            <!-- Right conversations side bar -->
-            <div class="offcanvas offcanvas-end " data-bs-scroll="true" data-bs-backdrop="false" tabindex="-1" id="offcanvasScrolling" aria-labelledby="offcanvasScrollingLabel">
-                <div class="offcanvas-header">
-                    <h5 class="offcanvas-title" id="offcanvasScrollingLabel">Offcanvas with body scrolling</h5>
+            <!-- Right conversations sidebar -->
+            <div class="offcanvas offcanvas-end text-white main-background" data-bs-scroll="true" data-bs-backdrop="false" tabindex="-1" id="offcanvasScrolling" aria-labelledby="offcanvasScrollingLabel">
+                <div class="offcanvas-header ">
+                    <h5 class="offcanvas-title" id="offcanvasScrollingLabel">Conversations</h5>
                     <button type="button" class="btn-close" data-bs-dismiss="offcanvas" aria-label="Close"></button>
                 </div>
                 <div class="offcanvas-body">
-                    <p>Try scrolling the rest of the page to see this option in action.</p>
+                    {% for conversation in conversations %}
+                        {{ conversation.title }}
+                    {% endfor %}
                 </div>
             </div>
             <!-- End right conversations sidebar -->
             <!-- Top right small menu -->
-            <div class="dropdown top-right-small-menu border-radius-25 text-bg-dark">
+            <div class="dropdown top-right-small-menu border-radius-25 text-white main-background">
                 <a href="#" class="d-flex align-items-center text-white text-decoration-none dropdown-toggle" data-bs-toggle="dropdown" aria-expanded="false">
             <div>
                     <img src="https://github.com/mdo.png" alt="" width="32" height="32" class="rounded-circle me-2">
@@ -134,7 +136,7 @@
                     {% endif %}
                 </a>
                 {% if app.user %}
-                    <ul class="dropdown-menu dropdown-menu-dark text-small shadow">
+                    <ul class="dropdown-menu dropdown-menu-dark main-background text-small shadow">
                         <li><a class="dropdown-item" href="#">Mes enregistrements</a></li>
                         <li><a class="dropdown-item" href="{{ path('app_account') }}">Mon compte</a></li>
                         <li><a class="dropdown-item" href="#">Mentions légales</a></li>
@@ -142,7 +144,7 @@
                         <li><a class="dropdown-item" href="#">Déconnexion</a></li>
                     </ul>
                 {% else %}
-                    <ul class="dropdown-menu dropdown-menu-dark text-small shadow">
+                    <ul class="dropdown-menu dropdown-menu-dark main-background text-small shadow">
                         <li><a class="dropdown-item" href="#">Mentions légales</a></li>
                         <li><hr class="dropdown-divider"></li>
                         <li><a class="dropdown-item" href="#">Connexion</a></li>
@@ -158,12 +160,12 @@
             <div class="d-flex justify-content-center p-2 bottom-navbar main-background">
                 <div>
                     <a href="#">
-                        <img src="{{ asset('assets/img/random-dice.png') }}" class="bi pe-none me-2 links-logos">
+                        <img src="{{ asset('assets/img/random-dice.png') }}" class="bi pe-none me-2 links-logos" alt="Dice logo">
                     </a>
                 </div>
                 <div>
                     <a href="#">
-                        <img src="{{ asset('assets/img/random.png') }}" class="bi pe-none me-2 links-logos">
+                        <img src="{{ asset('assets/img/random.png') }}" class="bi pe-none me-2 links-logos" alt="Random song logo">
                     </a>
                 </div>                    
                 <div class="bi pe-none me-2">
@@ -172,22 +174,22 @@
                 </div>
                 <div>
                     <a href="#">
-                        <img src="{{ asset('assets/img/rewind.svg') }}" class="bi pe-none me-2 links-logos">
+                        <img src="{{ asset('assets/img/rewind.svg') }}" class="bi pe-none me-2 links-logos" alt="Rewind logo">
                     </a>
                 </div>                    
                 <div>
                     <a href="#">
-                        <img src="{{ asset('assets/img/play.svg') }}" class="bi pe-none me-2 links-logos">
+                        <img src="{{ asset('assets/img/play.svg') }}" class="bi pe-none me-2 links-logos" alt="PLay logo">
                     </a>
                 </div>
                 <div>
                     <a href="#">
-                        <img src="{{ asset('assets/img/stop.svg') }}" class="bi pe-none me-2 links-logos">
+                        <img src="{{ asset('assets/img/stop.svg') }}" class="bi pe-none me-2 links-logos" alt="Stop logo">
                     </a>
                 </div>                    
                 <div>
                     <a href="#">
-                        <img src="{{ asset('assets/img/forward.svg') }}" class="bi pe-none me-2 links-logos">
+                        <img src="{{ asset('assets/img/forward.svg') }}" class="bi pe-none me-2 links-logos" alt="Forward logo">
                     </a>
                 </div>
                 <div class="progress mb-3" role="progressbar" aria-label="Basic example" aria-valuenow="0" aria-valuemin="0" aria-valuemax="100">

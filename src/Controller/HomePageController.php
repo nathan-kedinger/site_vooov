@@ -4,13 +4,8 @@ namespace App\Controller;
 
 use App\Classes\AudioRecordsClass;
 use App\Classes\ConversationsClass;
-use App\Classes\UsersClass;
 use App\Entity\AudioRecords;
-use App\Entity\Conversations;
-use App\Entity\Messages;
-use App\Form\MessageType;
 use App\Form\ResearchRecordType;
-use Ramsey\Uuid\Nonstandard\Uuid;
 use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
 use Symfony\Bundle\SecurityBundle\Security;
 use Symfony\Component\Form\FormEvent;
@@ -27,13 +22,16 @@ class HomePageController extends AbstractController
      * @return Response
      */
     #[Route('/', name: 'home_page')]
-    public function index(AudioRecordsClass $records, Request $request): Response
+    public function index(AudioRecordsClass $records, Request $request, ConversationsClass $conversations, Security $security): Response
     {
+        $currentUser = $security->getUser();
+        $currentUserConversations = $conversations->findCurrentUserConversations($currentUser);
+
         $recordForm = new AudioRecords;
         $researchForm = $this->createForm(ResearchRecordType::class, $recordForm);
         $researchForm->handleRequest($request);
 
-        // live search ( not working)
+        // live search (not working)
         $formBuilder = $researchForm->getConfig()->getFormFactory()->createBuilder();
         $formBuilder->addEventListener(FormEvents::PRE_SUBMIT, function (FormEvent $event) use ($records) {
 
@@ -51,7 +49,7 @@ class HomePageController extends AbstractController
             $query = $researchForm->get('title')->getData();
             $filteredRecords = $records->selectedAudioRecordsList($query);
 
-            // Ajouter ce code pour le débogage
+            // To fix issues
             if(empty($filteredRecords)) {
                 $this->addFlash('warning', 'Aucun enregistrement trouvé pour votre recherche.');
             }
@@ -59,9 +57,12 @@ class HomePageController extends AbstractController
             $filteredRecords = $records->audioRecordsList();
         }
 
+
+
         return $this->render('home_page/home_page.html.twig',[
             'records' => $filteredRecords,
-            'form' =>$researchForm->createView(),
+            'form' => $researchForm->createView(),
+            'conversations' => $currentUserConversations,
         ]);
     }
 }

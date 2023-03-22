@@ -45,7 +45,8 @@ class ConversationsRepository extends ServiceEntityRepository
     }
 
     /**
-     * @return ConversationsClass[] Returns an array of Conversations objects
+     * @param $userId
+     * @return array
      */
     public function findConversations($userId): array
     {
@@ -60,22 +61,22 @@ class ConversationsRepository extends ServiceEntityRepository
         ;
     }
 
+    /**
+     * @param $senderId
+     * @param $receiverId
+     * @return Conversations|null
+     * @throws \Doctrine\ORM\NonUniqueResultException
+     */
     public function findOneConversation($senderId, $receiverId): ?Conversations
     {
-        $sender = $this->em->getRepository(Users::class)->find($senderId);
-        $receiver = $this->em->getRepository(Users::class)->find($receiverId);
-
         return $this->createQueryBuilder('c')
-            ->andWhere('c.sender = :sender')
-            ->orWhere('c.sender = :receiver')
-            ->andWhere('c.receiver = :receiver')
-            ->orWhere('c.receiver = :sender')
+            ->andWhere('c.sender = :senderId AND c.receiver = :receiverId OR c.sender = :receiverId AND c.receiver = :senderId')
             ->setParameters([
-                'sender' => $sender,
-                'receiver' => $receiver,
-                ])
+                'senderId' => $senderId,
+                'receiverId' => $receiverId,
+            ])
+            ->setMaxResults(1)
             ->getQuery()
-            ->getOneOrNullResult()
-        ;
+            ->getOneOrNullResult();
     }
 }

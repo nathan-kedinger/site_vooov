@@ -56,6 +56,11 @@ class UsersRepository extends ServiceEntityRepository implements PasswordUpgrade
         $this->save($user, true);
     }
 
+    /**
+     * @param $pseudo
+     * @return int
+     * @throws \Doctrine\ORM\NonUniqueResultException
+     */
     public function findByPseudo($pseudo){
         return $this->createQueryBuilder('u')
             ->andWhere('u.pseudo = :val')
@@ -65,6 +70,11 @@ class UsersRepository extends ServiceEntityRepository implements PasswordUpgrade
         ;
     }
 
+    /**
+     * @param $id
+     * @return int
+     * @throws \Doctrine\ORM\NonUniqueResultException
+     */
     public function findById($id){
         return $this->createQueryBuilder('u')
             ->andWhere('u.id = :val')
@@ -72,6 +82,21 @@ class UsersRepository extends ServiceEntityRepository implements PasswordUpgrade
             ->getQuery()
             ->getOneOrNullResult()
             ;
+    }
+
+    /**
+     * @param $pseudo
+     * @return array
+     */
+    public function findGroupByPseudo($pseudo): array
+    {
+        return $this->createQueryBuilder('u')
+            ->andWhere('u.pseudo LIKE :val')
+            ->setParameter('val', '%' . $pseudo . '%')
+            ->orderBy('u.id', 'ASC')
+            ->setMaxResults(10)
+            ->getQuery()
+            ->getResult();
     }
 
 //    /**

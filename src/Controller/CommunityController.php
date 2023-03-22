@@ -18,27 +18,26 @@ class CommunityController extends AbstractController
     #[Route('/communaute', name: 'app_community')]
     public function index(UsersClass $users, Request $request): Response
     {
-        $search = new SearchUser();
+        $search = new Users();
         $form = $this->createForm(ResearchUserType::class, $search);
         $form->handleRequest($request);
 
-
+        $filteredUsers = $users->UsersList();
         // Search barre
         if($form->isSubmitted() && $form->isValid()){
-            $query = $form->get('title')->getData();
-            $filteredUsers = $users->selectedAudioRecordsList($query);
+            $query = $form->get('pseudo')->getData();
+
+            $filteredUsers = $users->selectedUsersList($query);
 
             // Ajouter ce code pour le débogage
-            if(empty($filteredRecords)) {
+            if(empty($filteredUsers)) {
                 $this->addFlash('warning', 'Aucun enregistrement trouvé pour votre recherche.');
             }
-        } else {
-            $filteredRecords = $users->audioRecordsList();
         }
 
 
         return $this->render('community/index.html.twig', [
-            'users' => $users->UsersList(),
+            'users' => $filteredUsers,
             'form' => $form->createView()
         ]);
     }
