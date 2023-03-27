@@ -15,6 +15,7 @@ use Symfony\Component\Mime\Address;
 use Symfony\Component\PasswordHasher\Hasher\UserPasswordHasherInterface;
 use Symfony\Component\Routing\Annotation\Route;
 use Symfony\Component\Messenger\MessageBusInterface;
+use Symfony\Component\Validator\Constraints\Date;
 use SymfonyCasts\Bundle\VerifyEmail\Exception\VerifyEmailExceptionInterface;
 use Ramsey\Uuid\Uuid;
 
@@ -41,8 +42,8 @@ class RegistrationController extends AbstractController
         $form->handleRequest($request);
         $uuid = Uuid::uuid4();
         $uuid_string = $uuid->toString();
-        $actualeDate = new DateTime('now');
-        $actualeDate_string = $actualeDate->format('d/m/y');
+        $birthday = New DateTime();
+        $actualDate = new DateTime('now');
 
         if ($form->isSubmitted() && $form->isValid()) {
             // encode the plain password
@@ -52,9 +53,9 @@ class RegistrationController extends AbstractController
             $user->setNumberOfMoons(1000);
             $user->setNumberOfFriends(0);
             $user->setUrlProfilePicture("0");
-            $user->setSignIn($actualeDate_string);
-            $user->setLastConnection($actualeDate_string);
-            $user->setBirthday($actualeDate_string);
+            $user->setSignIn($actualDate);
+            $user->setLastConnection($actualDate);
+            $user->setBirthday($birthday);
 
             $user->setPassword(
                 $userPasswordHasher->hashPassword(

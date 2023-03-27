@@ -48,9 +48,6 @@ class Users implements UserInterface, PasswordAuthenticatedUserInterface
     private ?string $firstname = null;
 
     #[ORM\Column(length: 255)]
-    private ?string $birthday = null;
-
-    #[ORM\Column(length: 255)]
     private ?string $phone = null;
 
     #[ORM\Column(type: Types::TEXT)]
@@ -68,12 +65,6 @@ class Users implements UserInterface, PasswordAuthenticatedUserInterface
     #[ORM\Column(length: 255)]
     private ?string $url_profile_picture = null;
 
-    #[ORM\Column(length: 255)]
-    private ?string $sign_in = null;
-
-    #[ORM\Column(length: 255)]
-    private ?string $last_connection = null;
-
     #[ORM\OneToMany(mappedBy: 'artist_uuid', targetEntity: AudioRecords::class)]
     private Collection $audioRecords;
 
@@ -85,6 +76,15 @@ class Users implements UserInterface, PasswordAuthenticatedUserInterface
 
     #[ORM\OneToMany(mappedBy: 'sender', targetEntity: Messages::class)]
     private Collection $messages;
+
+    #[ORM\Column(type: Types::DATE_MUTABLE, nullable: true)]
+    private ?\DateTimeInterface $birthday = null;
+
+    #[ORM\Column(type: Types::DATETIME_MUTABLE)]
+    private ?\DateTimeInterface $sign_in = null;
+
+    #[ORM\Column(type: Types::DATETIME_MUTABLE)]
+    private ?\DateTimeInterface $last_connection = null;
 
     public function __construct()
     {
@@ -224,18 +224,6 @@ class Users implements UserInterface, PasswordAuthenticatedUserInterface
         return $this;
     }
 
-    public function getBirthday(): ?string
-    {
-        return $this->birthday;
-    }
-
-    public function setBirthday(string $birthday): self
-    {
-        $this->birthday = $birthday;
-
-        return $this;
-    }
-
     public function getPhone(): ?string
     {
         return $this->phone;
@@ -304,30 +292,6 @@ class Users implements UserInterface, PasswordAuthenticatedUserInterface
     public function setUrlProfilePicture(string $url_profile_picture): self
     {
         $this->url_profile_picture = $url_profile_picture;
-
-        return $this;
-    }
-
-    public function getSignIn(): ?string
-    {
-        return $this->sign_in;
-    }
-
-    public function setSignIn(string $sign_in): self
-    {
-        $this->sign_in = $sign_in;
-
-        return $this;
-    }
-
-    public function getLastConnection(): ?string
-    {
-        return $this->last_connection;
-    }
-
-    public function setLastConnection(string $last_connection): self
-    {
-        $this->last_connection = $last_connection;
 
         return $this;
     }
@@ -448,6 +412,42 @@ class Users implements UserInterface, PasswordAuthenticatedUserInterface
                 $message->setSender(null);
             }
         }
+
+        return $this;
+    }
+
+    public function getBirthday(): ?\DateTimeInterface
+    {
+        return $this->birthday;
+    }
+
+    public function setBirthday(?\DateTimeInterface $birthday): self
+    {
+        $this->birthday = $birthday;
+
+        return $this;
+    }
+
+    public function getSignIn(): ?\DateTimeInterface
+    {
+        return $this->sign_in;
+    }
+
+    public function setSignIn(\DateTimeInterface $sign_in): self
+    {
+        $this->sign_in = $sign_in;
+
+        return $this;
+    }
+
+    public function getLastConnection(): ?\DateTimeInterface
+    {
+        return $this->last_connection;
+    }
+
+    public function setLastConnection(\DateTimeInterface $last_connection): self
+    {
+        $this->last_connection = $last_connection;
 
         return $this;
     }
