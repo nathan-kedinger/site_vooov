@@ -2,6 +2,7 @@
 
 namespace App\Controller;
 
+use App\Classes\ConversationsClass;
 use App\Entity\AudioRecords;
 use App\Entity\Users;
 use App\Form\AudioRecordType;
@@ -18,8 +19,16 @@ use Symfony\Component\Security\Core\User\UserInterface;
 class StudioController extends AbstractController
 {
     #[Route('studio', name: 'app_studio')]
-    public function index(Request $request, EntityManagerInterface $entityManager, Security $security): Response
-    {   
+    public function index(Request $request, EntityManagerInterface $em, Security $security, ConversationsClass $conversations): Response
+    {
+        // Conversations logic implementation
+        $currentUser = $security->getUser();
+        if (!$currentUser instanceof Users) {
+            $currentUserConversations = "";
+        } else {
+            $currentUserConversations = $conversations->findCurrentUserConversations($currentUser->getId(), $em);
+        }
+
         if ($security->isGranted('IS_AUTHENTICATED_FULLY')) {
             $user = $security->getUser();
         } else {
@@ -43,8 +52,8 @@ class StudioController extends AbstractController
             $record->setCreatedAt($actualeDate_string);
             $record->setUpdatedAt($actualeDate_string);
 
-            $entityManager->persist($record);
-            $entityManager->flush();
+            $em->persist($record);
+            $em->flush();
 
             $this->addFlash('notice', 'L\'enregistrement a bien été créé.');
 
@@ -52,7 +61,7 @@ class StudioController extends AbstractController
 
         return $this->render('studio/index.html.twig', [
             'audioRecordForm' => $form->createView(),
-
+            'conversations' => $currentUserConversations,
         ]);
     }
 }

@@ -3,21 +3,22 @@
 namespace App\Classes;
 
 use App\Entity\Conversations;
+use App\Entity\Users;
 use Doctrine\ORM\EntityManagerInterface;
+use Doctrine\ORM\NonUniqueResultException;
 use Ramsey\Uuid\Nonstandard\Uuid;
+use Symfony\Component\Security\Core\User\UserInterface;
 
 class ConversationsClass
 {
-    public function __construct(EntityManagerInterface $em){
-        $this->em = $em;
-    }
-
     /**
-     * @param $sender
-     * @param $receiver
+     * @param Users $sender
+     * @param Users|null $receiver
+     * @param EntityManagerInterface $em
      * @return void
      */
-    public function createConversations($sender, $receiver){
+    public function createConversations(UserInterface $sender, ?Users $receiver, EntityManagerInterface $em): void
+    {
 
         $conversation = new Conversations();
 
@@ -33,26 +34,29 @@ class ConversationsClass
         $conversation->setCreatedAt($actualDate_string);
         $conversation->setUpdatedAt($actualDate_string);
 
-        $this->em->persist($conversation);
-        $this->em->flush();
+        $em->persist($conversation);
+        $em->flush();
     }
 
     /**
-     * @param $senderId
-     * @param $receiverId
+     * @param int $senderId
+     * @param int $receiverId
+     * @param EntityManagerInterface $em
      * @return Conversations|null
+     * @throws NonUniqueResultException
      */
-    public function findOneConversation($senderId, $receiverId): Conversations|null
+    public function findOneConversation(int $senderId, int $receiverId, EntityManagerInterface $em): Conversations|null
     {
-        return $this->em->getRepository(Conversations::class)->findOneConversation($senderId, $receiverId);
+        return $em->getRepository(Conversations::class)->findOneConversation($senderId, $receiverId);
     }
 
     /**
-     * @param $currentUserId
-     * @return ConversationsClass[]
+     * @param int $currentUserId
+     * @param EntityManagerInterface $em
+     * @return array
      */
-    public function findCurrentUserConversations($currentUserId): array
+    public function findCurrentUserConversations(int $currentUserId, EntityManagerInterface $em): array
     {
-        return $this->em->getRepository(Conversations::class)->findConversations($currentUserId);
+        return $em->getRepository(Conversations::class)->findConversations($currentUserId);
     }
 }

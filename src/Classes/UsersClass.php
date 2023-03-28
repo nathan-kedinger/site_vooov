@@ -22,25 +22,29 @@ class UsersClass{
     }
 
     /**
-     * @param $pseudo
-     * @return int
+     * @param string $pseudo
+     * @return Users
      */
-    public function findOneUserByPseudo($pseudo){
+    public function findOneUserByPseudo(string $pseudo): Users
+    {
         return $this->em->getRepository(Users::class)->findByPseudo($pseudo);
     }
 
     /**
-     * @param $id
-     * @return int
+     * @param int $id
+     * @return Users
      */
-    public function findOneUserById($id){
+    public function findOneUserById(int $id): Users
+    {
         return $this->em->getRepository(Users::class)->findById($id);
     }
 
     /**
-     * @return Users[]
+     * @param string $pseudo
+     * @return array
      */
-    public function selectedUsersList($pseudo): array{
+    public function selectedUsersList(string $pseudo): array
+    {
         return $this->em->getRepository(Users::class)->findGroupByPseudo($pseudo);
     }
 }

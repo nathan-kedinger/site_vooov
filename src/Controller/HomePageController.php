@@ -5,7 +5,10 @@ namespace App\Controller;
 use App\Classes\AudioRecordsClass;
 use App\Classes\ConversationsClass;
 use App\Entity\AudioRecords;
+use App\Entity\Users;
 use App\Form\ResearchRecordType;
+use Doctrine\ORM\EntityManager;
+use Doctrine\ORM\EntityManagerInterface;
 use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
 use Symfony\Bundle\SecurityBundle\Security;
 use Symfony\Component\Form\FormEvent;
@@ -19,30 +22,38 @@ class HomePageController extends AbstractController
     /**
      * @param AudioRecordsClass $records
      * @param Request $request
+     * @param ConversationsClass $conversations
+     * @param Security $security
+     * @param EntityManagerInterface $em
      * @return Response
      */
     #[Route('/', name: 'home_page')]
-    public function index(AudioRecordsClass $records, Request $request, ConversationsClass $conversations, Security $security): Response
+    public function index(AudioRecordsClass $records, Request $request, ConversationsClass $conversations, Security $security, EntityManagerInterface $em): Response
     {
+        // Conversations logic implementation
         $currentUser = $security->getUser();
-        $currentUserConversations = $conversations->findCurrentUserConversations($currentUser);
+        if (!$currentUser instanceof Users) {
+            $currentUserConversations = "";
+        } else {
+            $currentUserConversations = $conversations->findCurrentUserConversations($currentUser->getId(), $em);
+        }
 
         $recordForm = new AudioRecords;
         $researchForm = $this->createForm(ResearchRecordType::class, $recordForm);
         $researchForm->handleRequest($request);
 
         // live search (not working)
-        $formBuilder = $researchForm->getConfig()->getFormFactory()->createBuilder();
-        $formBuilder->addEventListener(FormEvents::PRE_SUBMIT, function (FormEvent $event) use ($records) {
+        //$formBuilder = $researchForm->getConfig()->getFormFactory()->createBuilder();
+        //$formBuilder->addEventListener(FormEvents::PRE_SUBMIT, function (FormEvent $event) use ($records) {
 
-            $data = $event->getData();
-            $query = $data['title']; // Récupérer le terme de recherche
-            $filteredRecords = $records->selectedAudioRecordsList($query); // Effectuer la recherche
+            //$data = $event->getData();
+            //$query = $data['title']; // Récupérer le terme de recherche
+            //$filteredRecords = $records->selectedAudioRecordsList($query); // Effectuer la recherche
 
             // Modifier les données du formulaire pour inclure les résultats de la recherche
-            $data['filteredRecords'] = $filteredRecords;
-            $event->setData($data);
-        });
+           // $data['filteredRecords'] = $filteredRecords;
+           // $event->setData($data);
+        //});
 
         // Search barre
         if($researchForm->isSubmitted() && $researchForm->isValid()){

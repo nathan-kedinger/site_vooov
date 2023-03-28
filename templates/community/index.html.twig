@@ -19,10 +19,9 @@
                                 </div>
                                 <div class="col-md-3 text-start">
                                     <h4 class="card-title mb-3">{{ user.pseudo }}</h4>
-                                    <button class="btn btn-primary">Voir le profil</button>
+                                    <a href="{{ path('app_other_user', {'id': user.id}) }}" class="btn btn-primary">Voir le profil</a>
                                 </div>
                                 <div class="col-md-6">
-
                                     <p class="card-text">{{ user.description }}</p>
                                 </div>
                             </div>

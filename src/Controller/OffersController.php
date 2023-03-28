@@ -2,8 +2,10 @@
 
 namespace App\Controller;
 
+use App\Classes\ConversationsClass;
 use App\Classes\OffersClass;
 use App\Entity\Offers;
+use App\Entity\Users;
 use App\Form\OfferType;
 use DateTime;
 use Doctrine\ORM\EntityManagerInterface;
@@ -17,16 +19,33 @@ use Symfony\Component\Routing\Annotation\Route;
 class OffersController extends AbstractController
 {
     #[Route('/offres', name: 'app_offers')]
-    public function index(OffersClass $offers): Response
+    public function index(OffersClass $offers, EntityManagerInterface $em, Security $security, ConversationsClass $conversations): Response
     {
+        // Conversations logic implementation
+        $currentUser = $security->getUser();
+        if (!$currentUser instanceof Users) {
+            $currentUserConversations = "";
+        } else {
+            $currentUserConversations = $conversations->findCurrentUserConversations($currentUser->getId(), $em);
+        }
         return $this->render('offers/index.html.twig', [
             'offers' => $offers->offersList(),
+            'conversations' => $currentUserConversations,
+
         ]);
     }
 
     #[Route('/nouvelle-offre', name: 'app_new_offer')]
-    public function newOffer(Request $request, EntityManagerInterface $entityManager, Security $security): Response
+    public function newOffer(Request $request, EntityManagerInterface $em, Security $security, ConversationsClass $conversations): Response
     {
+        // Conversations logic implementation
+        $currentUser = $security->getUser();
+        if (!$currentUser instanceof Users) {
+            $currentUserConversations = "";
+        } else {
+            $currentUserConversations = $conversations->findCurrentUserConversations($currentUser->getId(), $em);
+        }
+
         if ($security->isGranted('IS_AUTHENTICATED_FULLY')) {
             $user = $security->getUser();
         } else {
@@ -47,12 +66,14 @@ class OffersController extends AbstractController
             $offer->setUserId($user);
 
             
-            $entityManager->persist($offer);
-            $entityManager->flush();
+            $em->persist($offer);
+            $em->flush();
         }
 
         return $this->render('offers/new_offer.html.twig', [
             'offersForm' => $form->createView(),
+            'conversations' => $currentUserConversations,
+
         ]);
     }
 }

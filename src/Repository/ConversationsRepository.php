@@ -45,10 +45,11 @@ class ConversationsRepository extends ServiceEntityRepository
     }
 
     /**
-     * @param $userId
+     * Use it to find all conversations from one user
+     * @param int $userId
      * @return array
      */
-    public function findConversations($userId): array
+    public function findConversations(int $userId): array
     {
         return $this->createQueryBuilder('c')
             ->andWhere('c.sender = :val')
@@ -62,12 +63,13 @@ class ConversationsRepository extends ServiceEntityRepository
     }
 
     /**
-     * @param $senderId
-     * @param $receiverId
+     * Use it to access to one particular conversation
+     * @param int $senderId
+     * @param int $receiverId
      * @return Conversations|null
      * @throws \Doctrine\ORM\NonUniqueResultException
      */
-    public function findOneConversation($senderId, $receiverId): ?Conversations
+    public function findOneConversation(int $senderId, int $receiverId): ?Conversations
     {
         return $this->createQueryBuilder('c')
             ->andWhere('c.sender = :senderId AND c.receiver = :receiverId OR c.sender = :receiverId AND c.receiver = :senderId')
