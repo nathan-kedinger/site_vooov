@@ -29,19 +29,28 @@ class AudioRecordType extends AbstractType
             ->add('title',TextType::class, [
                 'label' => 'Titre de l\'enregistrement',
                 'attr' => [
+                    'class' => 'm-2',
                     'placeholder' =>  'Donnez un titre à cet enregistrement'
                 ]
             ])
             ->add('voice_style', ChoiceType::class, [
                 'choices' => $this->voiceStyleRepository->getVoiceStyleChoices(),
+                'attr' => [
+                    'class' => 'm-2'
+                ]
             ])
             ->add('categories', ChoiceType::class, [
                 'choices' => $this->categoriesRepository->getCategoriesChoices(),
+                'label' => 'Catégorie',
+                'attr' => [
+                    'class' => 'm-2'
+                ]
             ])
             ->add('description',TextareaType::class, [
-                'label' => 'Déscription',
+                'label' => 'Description',
                 'attr' => [
-                    'placeholder' =>  'Écrivez une déscription à propos de cet enregistrement.'
+                    'class' => 'm-2 form-control',
+                    'placeholder' =>  'Écrivez une description à propos de cet enregistrement.'
                 ]
             ])
         ;

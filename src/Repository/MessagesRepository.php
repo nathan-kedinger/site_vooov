@@ -42,13 +42,13 @@ class MessagesRepository extends ServiceEntityRepository
     /**
      * @return Messages[] Returns an array of Messages objects
      */
-    public function findOneConversationMessages(string $conversationUuid): array
+    public function findAllMessagesFromOneConversation(string $conversationUuid): array
     {
         return $this->createQueryBuilder('m')
             ->andWhere('m.conversation_uuid = :val')
             ->setParameter('val', $conversationUuid)
-            ->orderBy('m.id', 'ASC')
-            ->setMaxResults(10)
+            ->orderBy('m.id', 'DESC')
+            ->setMaxResults(20)
             ->getQuery()
             ->getResult()
         ;

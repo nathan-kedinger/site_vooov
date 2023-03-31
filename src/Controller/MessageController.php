@@ -53,7 +53,7 @@ class MessageController extends AbstractController
                     $conversations->createConversations($currentUser, $receiver, $em);
                 }
                 $targetedConversation = $conversations->findOneConversation($currentUser->getid(), $receiver->getId(), $em);
-                $messages->createMessage($currentUser, $receiver, $targetedConversation->getUuid(), $body);
+                $messages->createMessage($currentUser, $receiver, $targetedConversation->getUuid(), $body, $em);
             } else {
                 // Renvoyer un message proposant de se connecter
             }
@@ -66,8 +66,8 @@ class MessageController extends AbstractController
         ]);
     }
 
-    #[Route('/conversation/{id}', name: 'app_conversation')]
-    public function conversation($id, UsersClass $receiverUser, ConversationsClass $conversations, MessagesClass $messages, Request $request, Security $security, EntityManagerInterface $em): Response
+    #[Route('/conversation/{uuid}', name: 'app_conversation')]
+    public function conversation($uuid, UsersClass $receiver, ConversationsClass $conversation, MessagesClass $messages, Request $request, Security $security, EntityManagerInterface $em): Response
     {
 
         // Conversations logic implementation
@@ -75,33 +75,41 @@ class MessageController extends AbstractController
         if (!$currentUser instanceof Users) {
             $currentUserConversations = "";
         } else {
-            $currentUserConversations = $conversations->findCurrentUserConversations($currentUser->getId(), $em);
+            $currentUserConversations = $conversation->findCurrentUserConversations($currentUser->getId(), $em);
+
+
+            $currentConversation = $conversation->findOneConversationByUuid($uuid, $em);
+
+            $currentUserId = $currentUser->getId();
 
             $messageEntity = new Messages();
             $sendingMessage = $this->createForm(MessageType::class, $messageEntity);
             $sendingMessage->handleRequest($request);
 
-            $conversationMessageList = $messages->
+            $conversationMessageList = $messages->findAllMessagesFromOneConversation($uuid, $em);
+            $conversationSender = $currentConversation->getSender()->getId();
+            $conversationReceiver = $currentConversation->getReceiver()->getId();
 
-            $receiver = $receiverUser->findOneUserById($id);
+            if ($conversationSender == $currentUserId){
+                $receiver = $receiver->findOneUserById($conversationReceiver);
+            } elseif ($conversationReceiver == $currentUserId){
+                $receiver = $receiver->findOneUserById($conversationSender);
+            }
 
             if ($sendingMessage->isSubmitted() && $sendingMessage->isValid() && $security->isGranted('IS_AUTHENTICATED_FULLY')) {
-                $targetedConversation = $conversations->findOneConversation($currentUser->getId(), $receiver->getId(),  $em);
                 $body = $sendingMessage->get('body')->getData();
 
-                if($targetedConversation == null) {
-                    $conversations->createConversations($currentUser, $receiver, $em);
-                }
-                $targetedConversation = $conversations->findOneConversation($currentUser->getid(), $receiver->getId(), $em);
-                $messages->createMessage($currentUser, $receiver, $targetedConversation->getUuid(), $body);
+
+                $messages->createMessage($currentUser, $receiver, $currentConversation->getUuid(), $body, $em);
             } else {
                 // Renvoyer un message proposant de se connecter
             }
         }
 
-        return $this->render('first_message/index.html.twig', [
+        return $this->render('message/conversation.html.twig', [
             'sendingMessage' => $sendingMessage->createView(),
             'conversations' => $currentUserConversations,
+            'messages' => $conversationMessageList,
 
         ]);
     }

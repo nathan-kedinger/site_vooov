@@ -32,24 +32,30 @@ class OfferType extends AbstractType
         ->add('title',TextType::class, [
             'label' => 'Titre de l\'enregistrement',
             'attr' => [
+                'class' => 'w-100 p-2 m-2',
                 'placeholder' =>  'Donnez un titre à cette annonce'
             ]
         ])            
         ->add('body',TextareaType::class, [
             'label' => 'Déscription',
             'attr' => [
-                'placeholder' =>  'Écrivez une déscription à propos de votre besoin.'
+                'placeholder' =>  'Écrivez une déscription à propos de votre besoin.',
+                'class' => 'w-100 p-2 m-2'
             ]
         ])            
         ->add('budget', NumberType::class, [
             'label' => 'Budget',
             'attr' => [
+                'class' => 'w-100 p-2 m-2',
                 'placeholder' => 'Indiquer le nombre de moons que vous pourriez donner pour cet enregistrement'
             ]
         ])
         ->add('voice_style',ChoiceType::class, [
             'label' => 'Le style de voix',
             'choices' => $this->voiceStyleRepository->getVoiceStyleChoices(),
+            'attr' => [
+                'class' => 'm-2'
+            ]
         ])
             //Needs to be destroyed when this date is reached
         ->add('end_at', DateType::class, [
@@ -59,7 +65,7 @@ class OfferType extends AbstractType
         ->add('submit', SubmitType::class, [
             'label' => 'Poster l\'annonce',
             'attr' => [
-                'class' => 'btn buttons btn-primary w-100 mt-4'
+                'class' => 'btn buttons btn-primary w-50 mt-4'
             ]
         ])
         ->add('agreeTerms', CheckboxType::class, [

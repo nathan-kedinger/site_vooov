@@ -42,19 +42,6 @@ class HomePageController extends AbstractController
         $researchForm = $this->createForm(ResearchRecordType::class, $recordForm);
         $researchForm->handleRequest($request);
 
-        // live search (not working)
-        //$formBuilder = $researchForm->getConfig()->getFormFactory()->createBuilder();
-        //$formBuilder->addEventListener(FormEvents::PRE_SUBMIT, function (FormEvent $event) use ($records) {
-
-            //$data = $event->getData();
-            //$query = $data['title']; // Récupérer le terme de recherche
-            //$filteredRecords = $records->selectedAudioRecordsList($query); // Effectuer la recherche
-
-            // Modifier les données du formulaire pour inclure les résultats de la recherche
-           // $data['filteredRecords'] = $filteredRecords;
-           // $event->setData($data);
-        //});
-
         // Search barre
         if($researchForm->isSubmitted() && $researchForm->isValid()){
             $query = $researchForm->get('title')->getData();
@@ -67,8 +54,6 @@ class HomePageController extends AbstractController
         } else {
             $filteredRecords = $records->audioRecordsList();
         }
-
-
 
         return $this->render('home_page/home_page.html.twig',[
             'records' => $filteredRecords,

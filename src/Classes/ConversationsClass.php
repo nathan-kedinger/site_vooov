@@ -59,4 +59,9 @@ class ConversationsClass
     {
         return $em->getRepository(Conversations::class)->findConversations($currentUserId);
     }
+
+    public function findOneConversationByUuid(string $uuid, EntityManagerInterface $em): Conversations
+    {
+        return $em->getRepository(Conversations::class)->findOneConversationByUuid($uuid);
+    }
 }

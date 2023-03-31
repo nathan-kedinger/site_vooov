@@ -81,4 +81,16 @@ class ConversationsRepository extends ServiceEntityRepository
             ->getQuery()
             ->getOneOrNullResult();
     }
+
+    public function findOneConversationByUuid(string $uuid): ?Conversations
+    {
+        return $this->createQueryBuilder('c')
+            ->andWhere('c.uuid = :uuid')
+            ->setParameters([
+                'uuid' => $uuid,
+            ])
+            ->setMaxResults(1)
+            ->getQuery()
+            ->getOneOrNullResult();
+    }
 }

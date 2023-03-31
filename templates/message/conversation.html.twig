@@ -1,0 +1,37 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}Message {{ parent() }}{% endblock %}
+
+{% block content %}
+    <div class="container">
+    <div class="row justify-content-center">
+        <div class="col-md-8 main-background">
+            <div class="row">
+                {%  for message in messages %}
+                    {% if message.sender.id == app.user.id %}
+                        <div class="col offset-md-5 ">
+                            <div class="card text-bg-light text-end m-2 p-2">
+                                {{ message.body }}
+                            </div>
+                        </div>
+                    {% else %}
+                        <div class="col-md-7 ms-0">
+                            <div class="card text-bg-secondary text-start m-2 p-2">
+                                {{ message.body }}
+                            </div>
+                        </div>
+                    {% endif %}
+                {% endfor %}
+            </div>
+            <div class="row m-5 p-5">
+            </div>
+
+        </div>
+    <div class="">
+        <div class="fixed-bottom row justify-content-center mb-3">
+                <div class="col-md-6 main-background p-1 m-5">
+                    {{ form(sendingMessage) }}
+                </div>
+        </div>
+    </div>
+{% endblock %}

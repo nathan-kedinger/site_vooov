@@ -8,10 +8,6 @@ use Ramsey\Uuid\Nonstandard\Uuid;
 
 class MessagesClass
 {
-    public function __construct(EntityManagerInterface $em){
-        $this->em = $em;
-    }
-
     /**
      * Creating a new message in database
      * @param $user
@@ -20,7 +16,7 @@ class MessagesClass
      * @param $body
      * @return void
      */
-    public function createMessage($user, $receiver, $conversationUuidString, $body): void{
+    public function createMessage($user, $receiver, $conversationUuidString, $body, EntityManagerInterface $em): void{
         $message = new Messages();
 
         $uuid = Uuid::uuid4();
@@ -36,7 +32,12 @@ class MessagesClass
         $message->setSendAt($actualDate_string);
         $message->setBody($body); // Ajout de cette ligne
 
-        $this->em->persist($message);
-        $this->em->flush();
+        $em->persist($message);
+        $em->flush();
+    }
+
+    public function findAllMessagesFromOneConversation(string $conversationUuid, EntityManagerInterface $em)
+    {
+        return $em->getRepository(Messages::class)->findAllMessagesFromOneConversation($conversationUuid);
     }
 }
