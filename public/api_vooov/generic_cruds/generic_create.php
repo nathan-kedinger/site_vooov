@@ -1,5 +1,7 @@
 <?php
 // Headers
+use public\Database;
+
 header("Access-Control-Allow-Origin: *");
 header("Content-Type: application/json; charset=UTF-8");
 header("Access-Control-Allow-Methods: POST"); 
@@ -30,7 +32,7 @@ try{
     // Get input data
     $input = file_get_contents("php://input");
     if (!$input = json_decode($input)) {
-        throw new InvalidArgumentException("Invalid input data. Must be valid JSON", 405);
+        throw new InvalidArgumentException("Invalid input data. Must be valid JSON", 400);
     }
         foreach($arguments as $argument){
             if(isset($input->$argument)){

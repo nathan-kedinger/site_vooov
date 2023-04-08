@@ -1,6 +1,8 @@
 <?php
 // Headers
 // Access from any site or device
+use public\Database;
+
 header("Access-Control-Allow-Origin: *");
 
 // Data format
