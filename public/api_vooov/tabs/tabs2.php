@@ -1,11 +1,10 @@
 <?php
 
 $tabMessages = [                
-    $id = "id",
-    $sender = "sender_id",
-    $receiver = "receiver_id",
     $uuid = "uuid",
     $conversation_uuid = "conversation_uuid",
+    $sender = "sender",
+    $receiver = "receiver",
     $body = "body",
     $seen = "seen",
     $send_at = "send_at" 

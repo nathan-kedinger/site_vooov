@@ -14,7 +14,7 @@ include_once '../tabs/tabs.php';
     $table = "conversations";
 
     // Datas
-    $arguments = $tabConversations;// Replace with the good tab
+    $arguments = $tabConversationsRead;// Replace with the good tab
 
     // SQL request
     $sql = "SELECT " . implode(', ', array_map(function($argument) 

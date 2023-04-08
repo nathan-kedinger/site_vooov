@@ -5,7 +5,7 @@
     $table = "conversations";
 
     // Datas
-    $arguments = $tabConversations;// Replace with the good tab
+    $arguments = $tabConversationsRead;// Replace with the good tab
 
     // SQL request
     $sql = "SELECT * FROM " . $table; // It is possible to add a join after that

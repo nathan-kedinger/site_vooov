@@ -6,7 +6,7 @@
 
     $theOneToGet = "uuid"; // Change with the good column
 
-    $arguments = $tabFriends;// Replace with the good tab
+    $arguments = $tabFriendsRead;// Replace with the good tab
 
     $sql = "SELECT ". implode(', ', array_map(function($argument) 
     { return $argument; }, $arguments)) . " FROM " . $table ."
