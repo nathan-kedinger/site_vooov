@@ -6,8 +6,8 @@ class Database
     private string $host = "127.0.0.1:3306";
     //private $host = "localhost";
     private string $db_name = "vooov";
-    private string $username = "root";
-    private string $password = "";
+    private string $username = "newuser";
+    private string $password = "newpassword";
     public ?PDO $connection;
 
     //getter for connection
