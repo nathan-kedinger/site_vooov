@@ -31,7 +31,10 @@ try{
     
     // Get datas
     $stmt = $crudObject->read($sql);
-    
+
+    // Add logs to check the SQL query
+    error_log("SQL query: " . $sql);
+
     // Verifying that we have at least one row in database
     if($stmt->rowCount() > 0){
         //initialisation of an associative tab
@@ -53,6 +56,8 @@ try{
         
         echo json_encode($showedDatas);
         }else{
+            // Add a log to check if there are no rows in the table
+            error_log("No rows found in the table.");
             http_response_code(400);
             echo json_encode(["message" => "There is no row in that table"]);
         }
