@@ -11,7 +11,7 @@ class Database
     public ?\PDO $connection;
 
     //getter for connection
-    public function getConnection(): ?PDO
+    public function getConnection(): ?\PDO
     {
         //closing the connection if exists
         $this->connection = null;
