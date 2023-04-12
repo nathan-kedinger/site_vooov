@@ -33,7 +33,7 @@ try{
     $stmt = $crudObject->read($sql);
 
     // Add logs to check the SQL query
-    echo "SQL query: " . $sql;
+    error_log("SQL query: " . $sql);
 
     // Verifying that we have at least one row in database
     if($stmt->rowCount() > 0){
