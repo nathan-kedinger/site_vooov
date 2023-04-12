@@ -125,3 +125,21 @@ $tabFriends = [
     $user2 = "user2",
 
 ];
+
+$tabAudioRecordCategoriesRead = [
+    $id = "id",
+    $name => "name"
+];
+
+$tabAudioRecordCategories = [
+    $name => "name"
+];
+
+$tabVoiceStyleRead = [
+    $id ="id",
+    $voice_style = "voice_style"
+];
+
+$tabVoiceStyle = [
+    $voice_style = "voice_style"
+];
