@@ -18,6 +18,13 @@ use Symfony\Component\Security\Core\User\UserInterface;
 
 class StudioController extends AbstractController
 {
+    /**
+     * @param Request $request
+     * @param EntityManagerInterface $em
+     * @param Security $security
+     * @param ConversationsClass $conversations
+     * @return Response
+     */
     #[Route('studio', name: 'app_studio')]
     public function index(Request $request, EntityManagerInterface $em, Security $security, ConversationsClass $conversations): Response
     {

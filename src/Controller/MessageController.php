@@ -59,7 +59,7 @@ class MessageController extends AbstractController
             }
         }
 
-        return $this->render('first_message/index.html.twig', [
+        return $this->render('message/index.html.twig', [
             'sendingMessage' => $sendingMessage->createView(),
             'conversations' => $currentUserConversations,
 
