@@ -106,8 +106,15 @@ class CRUD{
 
         $row = $query->fetch(PDO::FETCH_ASSOC);
 
-        foreach($arguments as $argument){
-            $this->$argument = $row[$argument];
+        if ($row) { // Ajoutez cette condition pour vérifier si $row est un tableau
+            foreach($arguments as $argument){
+                $this->$argument = $row[$argument];
+            }
+        } else {
+            // Gérez le cas où la requête ne renvoie pas de résultat, par exemple en attribuant des valeurs NULL aux propriétés de l'objet
+            foreach($arguments as $argument){
+                $this->$argument = NULL;
+            }
         }
     }
 
