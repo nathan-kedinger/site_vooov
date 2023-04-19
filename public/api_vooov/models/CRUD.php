@@ -108,8 +108,10 @@ class CRUD{
 
         $row = $query->fetch(PDO::FETCH_ASSOC);
 
-        foreach($arguments as $argument){
-            $this->$argument = $row[$argument];
+        if ($row) {
+            foreach ($arguments as $argument) {
+                $this->$argument = $row[$argument];
+            }
         }
     }
 
