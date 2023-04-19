@@ -18,6 +18,7 @@ class CRUD{
      public function __construct($db)
      {
         $this->connection = $db;
+        $this->uuid = null;
      }
 
 
@@ -54,6 +55,7 @@ class CRUD{
             return false;
         }
      }
+
 
     /**
      * Reading 
@@ -96,20 +98,18 @@ class CRUD{
      * @param string $sql the sql query to prepare
      * @return void
      */
-    public function readOne($arguments, $sql, $valueToSearch){
+    public function readOne($arguments, $sql){
 
         $query = $this->connection->prepare($sql);
 
-        $query->bindParam(1, $valueToSearch);
+        $query->bindParam(1, $this->uuid);
 
         $query->execute();
 
         $row = $query->fetch(PDO::FETCH_ASSOC);
 
-        if ($row) { // Ajoutez cette condition pour vérifier si $row est un tableau
-            foreach($arguments as $argument){
-                $this->$argument = $row[$argument];
-            }
+        foreach($arguments as $argument){
+            $this->$argument = $row[$argument];
         }
     }
 
