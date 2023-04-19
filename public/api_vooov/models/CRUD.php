@@ -96,11 +96,11 @@ class CRUD{
      * @param string $sql the sql query to prepare
      * @return void
      */
-    public function readOne($arguments, $sql){
+    public function readOne($arguments, $sql, $valueToSearch){
 
         $query = $this->connection->prepare($sql);
 
-        $query->bindParam(1, $this->uuid);
+        $query->bindParam(1, $valueToSearch);
 
         $query->execute();
 

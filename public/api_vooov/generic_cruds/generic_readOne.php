@@ -36,9 +36,9 @@ try{
         // Verifying that we have at least one crudObject
         if (!empty($uuid)) {
             
-        $crudObject->uuid = $uuid;
+        $valueToSearch = $uuid;
 
-            $crudObject->readOne($arguments, $sql);
+            $crudObject->readOne($arguments, $sql, $valueToSearch);
 
             $oneShowedData = [];
             foreach ($arguments as $argument){
