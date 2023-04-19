@@ -98,16 +98,11 @@ class CRUD{
      * @param string $sql the sql query to prepare
      * @return void
      */
-    public function readOne($arguments, $sql){
-
+    public function readOne($arguments, $sql, $theOneToGet){
         $query = $this->connection->prepare($sql);
-
-        $query->bindParam(1, $this->uuid);
-
+        $query->bindParam(1, $this->$theOneToGet);
         $query->execute();
-
         $row = $query->fetch(PDO::FETCH_ASSOC);
-
         if ($row) {
             foreach ($arguments as $argument) {
                 $this->$argument = $row[$argument];

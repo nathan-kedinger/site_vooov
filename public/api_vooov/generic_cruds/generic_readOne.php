@@ -38,7 +38,7 @@ try{
 
         $crudObject->uuid = $uuid;
 
-            $crudObject->readOne($arguments, $sql);
+            $crudObject->readOne($arguments, $sql, $theOneToGet);
 
             $oneShowedData = [];
             foreach ($arguments as $argument){
