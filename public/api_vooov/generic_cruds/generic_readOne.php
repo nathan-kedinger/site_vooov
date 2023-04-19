@@ -33,10 +33,11 @@ try{
         $uuid = $_GET[$theOneToGet];
         error_log("UUID: $uuid", 0, "logs.txt");
         error_log("SQL Query: $sql", 0, "logs.txt");
+        error_log("One to get: $oneToGet", 0, "logs.txt");
         // Verifying that we have at least one crudObject
         if (!empty($uuid)) {
-            
-        $valueToSearch = $uuid;
+
+            $crudObject->$theOneToGet = $oneToGet;
 
             $crudObject->readOne($arguments, $sql, $valueToSearch);
 
