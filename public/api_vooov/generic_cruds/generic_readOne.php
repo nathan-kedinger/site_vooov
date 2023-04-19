@@ -31,7 +31,8 @@ try{
 
         // Get uuid from url Remplacer par oneToGet
         $uuid = $_GET[$theOneToGet];
-
+        error_log("UUID: $uuid", 0, "logs.txt");
+        error_log("SQL Query: $sql", 0, "logs.txt");
         // Verifying that we have at least one crudObject
         if (!empty($uuid)) {
             
