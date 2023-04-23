@@ -35,8 +35,12 @@ class CRUD{
             $query = $this->connection->prepare($sql);
 
             // Protection from injections
-            foreach($arguments as $argument){
-                $this->$argument=htmlspecialchars(strip_tags($this->$argument));
+            foreach ($arguments as $argument) {
+                if ($argument == 'roles' && json_decode($this->$argument) !== null) {
+                    // If the argument is 'roles' and the string is valid JSON, leave it unchanged
+                } else {
+                    $this->$argument = htmlspecialchars(strip_tags($this->$argument));
+                }
             }
 
             // Adding protected datas
