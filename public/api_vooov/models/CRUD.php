@@ -116,6 +116,31 @@ class CRUD{
         }
     }
 
+    /**
+     *
+     * Reading one data using procedure
+     *
+     * @param $arguments
+     * @param $sql
+     * @param $params
+     * @return void
+     */
+    public function readOneWithProcedure($arguments, $sql, $params = null)
+    {
+        $query = $this->connection->prepare($sql);
+
+            foreach ($params as $key => $value) {
+                $query->bindValue($key, $value);
+            }
+
+        $query->execute();
+
+        $row = $query->fetch(PDO::FETCH_ASSOC);
+
+        foreach($arguments as $argument){
+            $this->$argument = $row[$argument];
+        }
+    }
 
     /**
      * Update 
