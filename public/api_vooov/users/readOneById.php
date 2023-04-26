@@ -8,7 +8,7 @@ $theOneToGet ="id"; // Change with the good column
 
 $arguments = $tabUsersRead;// Replace with the good tab
 
-$useStoredProcedure = false; // Set to true if you want to use the stored procedure
+$useStoredProcedure = true; // Set to true if you want to use the stored procedure
 
 if ($useStoredProcedure) {
     $sql = 'CALL get_users_by_id(:user_id)';
