@@ -101,11 +101,17 @@ class CRUD{
      * @param string $sql the sql query to prepare
      * @return void
      */
-    public function readOne($arguments, $sql){
-
+    public function readOne($arguments, $sql, $params = null)
+    {
         $query = $this->connection->prepare($sql);
 
-        $query->bindParam(1, $this->uuid);
+        if ($params) {
+            foreach ($params as $key => $value) {
+                $query->bindValue($key, $value);
+            }
+        } else {
+            $query->bindParam(1, $this->uuid);
+        }
 
         $query->execute();
 

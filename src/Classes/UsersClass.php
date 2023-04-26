@@ -38,7 +38,7 @@ class UsersClass{
         $stmt->bindValue('user_id', $id);
         $stmt->executeStatement();
 
-        $result = $stmt->fetch(PDO::FETCH_ASSOC);
+        $result = $stmt->fetchAssociative(PDO::FETCH_ASSOC);
 
         if ($result) {
 
