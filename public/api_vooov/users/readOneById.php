@@ -1,9 +1,4 @@
 <?php
-
-
-
-
-
 // Headers
 
 header("Access-Control-Allow-Origin: *");
@@ -30,7 +25,7 @@ try {
     // Expected table
     $table = "users"; // Change with the good BDD table name
 
-    $theOneToGet ="id"; // Change with the good column
+    $theOneToGet = "id"; // Change with the good column
 
     $arguments = $tabUsersRead;// Replace with the good tab
 
