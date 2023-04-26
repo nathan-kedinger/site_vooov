@@ -18,7 +18,6 @@ try {
         throw new Exception("Invalid request method. Only GET is allowed", 405);
     }
     // Including files for config and data access
-    include_once '../../Database.php';
     include_once '../models/CRUD.php';
     include_once '../tabs/tabs.php';
 
@@ -30,6 +29,7 @@ try {
     $arguments = $tabUsersRead;// Replace with the good tab
 
     $sql = 'CALL get_users_by_id(:user_id)';
+    include_once '../../Database.php';
 
     // DDB instanciation
     $database = new Database();
