@@ -21,6 +21,7 @@ try {
     // Including files for config and data access
     include_once '../models/CRUD.php';
     include_once '../tabs/tabs.php';
+    include_once '../../Database.php';
 
     // Expected table
     $table = "users"; // Change with the good BDD table name
@@ -30,7 +31,6 @@ try {
     $arguments = $tabUsersRead;// Replace with the good tab
 
     $sql = 'CALL get_users_by_id(:user_id)';
-    include_once '../../Database.php';
 
     // DDB instanciation
     $database = new Database();
