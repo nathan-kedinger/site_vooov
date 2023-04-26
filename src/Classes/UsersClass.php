@@ -1,18 +1,13 @@
 <?php
 namespace App\Classes;
 
-use App\Entity\AudioRecords;
 use App\Entity\Users;
 use Doctrine\ORM\EntityManagerInterface;
-use Doctrine\ORM\Mapping\Entity;
-use Symfony\Component\HttpFoundation\Request;
-use Symfony\Component\Serializer\SerializerInterface;
 class UsersClass{
     private EntityManagerInterface $em;
 
-    public function __construct(EntityManagerInterface $em, SerializerInterface $serializer){
+    public function __construct(EntityManagerInterface $em){
         $this->em = $em;
-        $this->serializer = $serializer;
     }
 
     /**
