@@ -19,7 +19,7 @@ include_once '../tabs/tabs.php';
     // SQL request
     $sql = "SELECT " . implode(', ', array_map(function($argument) 
     {return $argument;}, $arguments)) . " FROM " . $table . " WHERE 
-    sender = ? OR receiver = ?"; // It is possible to add a join after that
+    sender_id = ? OR receiver_id = ?"; // It is possible to add a join after that
 
     try{
         /**
@@ -44,7 +44,7 @@ include_once '../tabs/tabs.php';
         $crudObject = new CRUD($db);
     
         // Get datas
-        $stmt = $crudObject->readPlural($sql, [$_GET["sender"], $_GET["receiver"]]);
+        $stmt = $crudObject->readPlural($sql, [$_GET["sender_id"], $_GET["receiver_id"]]);
 
         // Verifying that we have at least one row in database
         if($stmt->rowCount() > 0){
