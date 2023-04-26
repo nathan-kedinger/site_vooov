@@ -47,14 +47,8 @@ class UsersClass{
 
         if ($result) {
 
-            // Convert result in JSON
-            $jsonResult = json_encode($result);
-
-            //  Using serializer to convert JSON in Users Object
-            $user = $this->serializer->deserialize($jsonResult, Users::class, 'json');
-
             // Manually creating Entity instance
-            /*$user = new Users();
+            $user = new Users();
             $user->setId($result['id']);
             $user->setEmail($result['email']);
             $user->setroles($result['roles']);
@@ -72,7 +66,7 @@ class UsersClass{
             $user->setNumberOfFriends($result['number_of_friends']);
             $user->setUrlProfilePicture($result['url_profile_picture']);
             $user->setSignIn($result['sign_in']);
-            $user->setLastConnection($result['last_connection']);*/
+            $user->setLastConnection($result['last_connection']);
 
 
             return $user;

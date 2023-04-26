@@ -76,6 +76,9 @@ class UsersRepository extends ServiceEntityRepository implements PasswordUpgrade
      * @throws \Doctrine\ORM\NonUniqueResultException
      */
     public function findById($id){
+
+
+
         return $this->createQueryBuilder('u')
             ->andWhere('u.id = :val')
             ->setParameter('val', $id)
