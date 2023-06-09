@@ -7,7 +7,10 @@
         <div class="d-flex justify-content-center text-light p-4">
             <h1>Recherche de voix-Off</h1>
         </div>
+        {% if app.user %}
             <a class="btn btn-primary bottom-right" href="{{ path('app_new_offer') }}">Poster une annonce</a>
+        {% else %}
+        {% endif %}
         {% for offer in offers %}
             <div class="row featurette mt-3 gx-5 text-center align-items-center justify-content-around">
                 <div class="col-md-6">
@@ -17,7 +20,7 @@
                                 <div class="col-md-2">
                                     <img class="rounded-circle main-logo" src="{{ asset('assets/img/logo_vooov.png') }}"><br><br>
                                     <div><p>Budget : </p>
-                                    <div><img src="{{ asset('assets/img/moon.svg') }}" class="bi pe-none me-2 small-size-logo " >
+                                    <div><img src="{{ asset('assets/img/moon.svg') }}" class="bi pe-none me-2 small-size-logo ">
                                     {{ offer.budget }}<br><br>
                                     </div>
                                     </div>
